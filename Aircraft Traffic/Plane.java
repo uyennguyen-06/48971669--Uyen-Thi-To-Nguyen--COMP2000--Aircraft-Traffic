@@ -2,18 +2,18 @@ public class Plane {
     private String planeID;
     private String model;
     private float planeSpeed;
-    private String destination;
-    private boolean bording; 
+    private String status; 
     private int capacity;
 
-    public Plane (String planeID, String model, String destination, boolean bording, int capacity){
+    public void setPlane (String planeID, String model, String destination, boolean bording, int capacity){
         this.planeID = planeID;
         this.model = model;
-        this.destination = destination;
-        this.bording = bording;
         this.capacity = capacity;
+        this.destination = destination;
+        this.status = "GOUNDED"; // Default status of plane
     }
 
+    //getters
     public String getPlaneID(){
         return planeID;
     }
@@ -30,24 +30,40 @@ public class Plane {
         return destination;
     }
 
-    public boolean getBording(){
-        if (bording == true){
-            System.out.println("The plane is currently boarding.");
-        } else {
-            System.out.println("The plane is not boarding at the moment.");
-        }
-        return bording;
+    public boolean getStatus(){
+        return status;
     }
 
     public int getCapacity(){
         return capacity;
     }
 
+    //setters
+    public void setPlaneID(String planeID){
+        this.planeID = planeID;
+    }
+
+    public void setModel(String model){
+        this.model = model;
+    }
+    
+    public void setCapacity(int capacity){
+        this.capacity = capacity;
+    }
+
+    public void setPlaneSpeed(float planeSpeed){
+        this.planeSpeed = planeSpeed;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
+    }
+
     public void displayInfo(){
-        System.out.println("Plane ID: " + planeID);
-        System.out.println("Model: " + model);
-        System.out.println("Destination: " + destination);
-        System.out.println("Bording: " + bording);
-        System.out.println("Capacity: " + capacity);
+        System.out.println("Plane ID: " + getPlaneID());
+        System.out.println("Model: " + getModel());
+        System.out.println("Capacity: " + getCapacity());
+        System.out.println("Destination: " + getPlaneSpeed());
+        System.out.println("Status: " + getStatus());
     }
 }
