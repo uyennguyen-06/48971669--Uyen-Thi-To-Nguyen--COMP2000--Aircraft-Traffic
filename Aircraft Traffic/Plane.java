@@ -1,6 +1,7 @@
 public class Plane {
     private String planeID;
     private String model;
+    private float planeSpeed;
     private String destination;
     private boolean bording; 
     private int capacity;
@@ -19,6 +20,10 @@ public class Plane {
 
     public String getModel(){
         return model;
+    }
+
+    public String getPlaneSpeed(){
+        return planeSpeed;
     }
 
     public String getDestination(){
