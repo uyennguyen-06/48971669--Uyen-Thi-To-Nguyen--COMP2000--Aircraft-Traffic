@@ -1,7 +1,7 @@
 public class Plane {
     private String planeID;
     private String model;
-    private float planeSpeed;
+    private double planeSpeed;
     private String status; 
     private int capacity;
 

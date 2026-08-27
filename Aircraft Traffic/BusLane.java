@@ -1,9 +1,13 @@
 public class BusLane extends AirportPath {
-    private final int capacity; 
-    private final double maxSpeedKnots;
+    private String pathID;
+    private double lengthInMeters;
+    private double busID;
+    private int capacity; 
+    private double maxSpeedKnots;
 
-    public BusLane(double busID, int capacity){
+    public BusLane(String pathID, double lengthInMeters, double busID, int capacity, double maxSpeedKnots){
         super(pathID, lengthInMeters);
+        this.busID = busID;
         this.capacity = capacity;
         this.maxSpeedKnots = maxSpeedKnots;
     } 
@@ -16,7 +20,7 @@ public class BusLane extends AirportPath {
 
   /**
    * 
-   * Adds an aircraft to the taxiway is space allows
+   * Adds a plane to the busLane is space allows
    */
   public boolean enterBusLane(Plane plane) {
     if (canAcceptPlane(plane)) {
@@ -24,10 +28,6 @@ public class BusLane extends AirportPath {
       return true;
     }
     return false;
-  }
-
-  public Plane exitBusLane() {
-    // return
   }
 
   // change return val
