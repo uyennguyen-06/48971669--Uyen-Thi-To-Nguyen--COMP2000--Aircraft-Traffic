@@ -1,26 +1,21 @@
 public class Runway extends AirportPath{
-    private String pathID;
-    private double lengthInMeters;
-    private final int capacity; //final allows only 1 plane at a time
+    private int capacity;
     private String status;
-    private final Plane currentPlane; //current plane at the runway
+    private Plane currentPlane; //current plane at the runway
 
-    public Runway(String pathID, double lengthInMeters, double runwayID, int capacity, Plane currentPlane){
+    public Runway(String pathID, double lengthInMeters, double runwayID, int capacity, Plane currentPlane, String status){
         super(pathID, lengthInMeters);
         this.capacity = capacity;
         this.status = status;
         this.currentPlane = currentPlane;
     }
 
-    @Override 
-    public boolean canAcceptPlane(Plane currentPlane){
-        return false; 
+    //setters
+    public void setStatus(String status){
+        this.status = status;
     }
 
-    public boolean enterRunway(Plane currentPlane){
-        return false;
-    }
-
+    //getters
     public int getCapacity(){
         return capacity;
     }
@@ -29,8 +24,26 @@ public class Runway extends AirportPath{
         return currentPlane; 
     }
 
-    public String status(){
+    public String getStatus(){
         System.out.println("Status: " + currentPlane + "is boarding.");
         return status;
     }
+
+    @Override 
+    public boolean canAcceptPlane(Plane plane){
+        if (currentPlane == null){
+            return true;
+        }
+        return false; 
+    }
+
+    @Override
+    public boolean enterRunway(Plane plane){
+        if (canAcceptPlane(plane)){
+            currentPlane = plane;
+            return true;
+        }
+        return false;
+    }
+
 }

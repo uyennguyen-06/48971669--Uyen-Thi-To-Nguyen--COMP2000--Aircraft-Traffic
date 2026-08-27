@@ -18,6 +18,4 @@ public abstract class AirportPath{
     public double getLengthInMeters(){
         return lengthInMeters;
     }
-
-    public abstract boolean canAcceptPlane(Plane currentPlane);
 }
