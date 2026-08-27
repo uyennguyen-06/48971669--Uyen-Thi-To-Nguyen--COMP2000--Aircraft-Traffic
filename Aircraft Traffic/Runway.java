@@ -29,7 +29,6 @@ public class Runway extends AirportPath{
         return status;
     }
 
-    @Override 
     public boolean canAcceptPlane(Plane plane){
         if (currentPlane == null){
             return true;
@@ -37,7 +36,6 @@ public class Runway extends AirportPath{
         return false; 
     }
 
-    @Override
     public boolean enterRunway(Plane plane){
         if (canAcceptPlane(plane)){
             currentPlane = plane;

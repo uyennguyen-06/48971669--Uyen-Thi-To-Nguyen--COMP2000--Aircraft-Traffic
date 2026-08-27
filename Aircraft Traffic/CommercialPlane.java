@@ -1,7 +1,7 @@
 public class CommercialPlane {
     private int numSeats;
 
-    public Commercial(int numSeats) {
+    public CommercialPlane(int numSeats) {
         this.numSeats = numSeats;
     }
 }

@@ -2,8 +2,8 @@ public class CargoPlane extends Plane{
     private final double maxWeight; // in KG
     private double currentWeight;
 
-    public CargoPlane(String planeID, String model, double planeSpeed, String status, double maxWeight, double currentWeight, double emptyWeight){
-        super(planeID, model, planeSpeed, status, emptyWeight);
+    public CargoPlane(String planeID, String model, double planeSpeed, String status, double emptyWeight, double maxWeight, double currentWeight, int capacity){
+        super(planeID, model, planeSpeed, status, emptyWeight, capacity);
         this.maxWeight = maxWeight;
         setCurrentWeight(currentWeight); //call setter from constructor so it would check setter first 
     }
@@ -28,6 +28,8 @@ public class CargoPlane extends Plane{
 
     @Override
     public void displayInfo(){
+        super.displayInfo();
+        
         System.out.println("This is a Cargo Plane.");
         System.out.println("Max Weight: " + maxWeight);
         System.out.println("Current Weight: " + currentWeight);

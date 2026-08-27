@@ -3,16 +3,16 @@ public class Plane {
     private String model;
     private double planeSpeed;
     private String status; 
-    private int capacity;
     private final double emptyWeight;
+    private int capacity;
 
-    public Plane(String planeID, String model, int capacity, double planeSpeed, String status, double emptyWeight){
+    public Plane(String planeID, String model, double planeSpeed, String status, double emptyWeight,  int capacity){
         this.planeID = planeID;
         this.model = model;
-        this.capacity = capacity;
-        this. planeSpeed = planeSpeed;
-        this.emptyWeight = emptyWeight;
+        this.planeSpeed = planeSpeed;
         this.status = "GOUNDED"; // Default status of plane
+        this.emptyWeight = emptyWeight;
+        this.capacity = capacity;
     }
 
     //setters
@@ -41,11 +41,18 @@ public class Plane {
         return model;
     }
 
-    public String getPlaneSpeed(){
+    public double getPlaneSpeed(){
         return planeSpeed;
     }
 
-    public boolean getStatus(){
+    public String getStatus(){
+        if(status.equals("GOUNDED")){
+            System.out.println("Status: " + planeID + " is grounded.");
+        } else if (status.equals("BOARDING")){
+            System.out.println("Status: " + planeID + " is boarding.");
+        } else if (status.equals("IN-FLIGHT")){
+            System.out.println("Status: " + planeID + " is in-flight.");
+        }
         return status;
     }
 
@@ -62,6 +69,6 @@ public class Plane {
         System.out.println("Model: " + getModel());
         System.out.println("Capacity: " + getCapacity());
         System.out.println("Destination: " + getPlaneSpeed());
-        System.out.println("Status: " + getStatus());
+        System.out.println(getStatus());
     }
 }
