@@ -13,6 +13,27 @@ public class Plane {
         this.status = "GOUNDED"; // Default status of plane
     }
 
+    //setters
+    public void setPlaneID(String planeID){
+        this.planeID = planeID;
+    }
+
+    public void setModel(String model){
+        this.model = model;
+    }
+    
+    public void setCapacity(int capacity){
+        this.capacity = capacity;
+    }
+
+    public void setPlaneSpeed(float planeSpeed){
+        this.planeSpeed = planeSpeed;
+    }
+
+    public void setStatus(String status){
+        this.status = status;
+    }
+    
     //getters
     public String getPlaneID(){
         return planeID;
@@ -36,27 +57,6 @@ public class Plane {
 
     public int getCapacity(){
         return capacity;
-    }
-
-    //setters
-    public void setPlaneID(String planeID){
-        this.planeID = planeID;
-    }
-
-    public void setModel(String model){
-        this.model = model;
-    }
-    
-    public void setCapacity(int capacity){
-        this.capacity = capacity;
-    }
-
-    public void setPlaneSpeed(float planeSpeed){
-        this.planeSpeed = planeSpeed;
-    }
-
-    public void setStatus(String status){
-        this.status = status;
     }
 
     public void displayInfo(){
