@@ -24,6 +24,10 @@ public class AirwayGate {
         return departingPlane;
     }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     //getters
     public String getGateID() {
         return gateID;

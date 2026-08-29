@@ -1,5 +1,5 @@
 public class Runway extends AirportPath{
-    private int capacity;
+    private final int capacity;
     private String status;
     private Plane currentPlane; //current plane at the runway
 

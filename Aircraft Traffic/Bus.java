@@ -8,18 +8,15 @@ public class Bus {
         this.busID = busID;
         this.busStatus = busStatus;
         this.busCapacity = busCapacity;
-        setCurrentPassengers(currentPassengers); // Call setter to validate current passengers
+
+        if (currentPassengers >= 0 && currentPassengers <= busCapacity) {
+            this.currentPassengers = currentPassengers;
+        } // Call setter to validate current passengers
     }
 
     //setters
     public void setBusStatus(String busStatus) {
         this.busStatus = busStatus;
-    }
-
-    public void setCurrentPassengers(int currentPassengers) {
-        if (currentPassengers >= 0 && currentPassengers <= busCapacity) {
-            this.currentPassengers = currentPassengers;
-        }
     }
 
     //getters

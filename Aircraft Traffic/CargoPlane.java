@@ -5,17 +5,11 @@ public class CargoPlane extends Plane{
     public CargoPlane(String planeID, String model, double planeSpeed, String status, double emptyWeight, double maxWeight, double currentWeight, int capacity){
         super(planeID, model, planeSpeed, status, emptyWeight, capacity);
         this.maxWeight = maxWeight;
-        setCurrentWeight(currentWeight); //call setter from constructor so it would check setter first 
-    }
 
-    //setter
-    public void setCurrentWeight(double currentWeight){
         if (currentWeight >= 0 && currentWeight <= maxWeight){
             this.currentWeight = currentWeight;
-        }
+        } //call setter from constructor so it would check setter first 
     }
-    
-    /* No setter for maxWeight because it is fixed when the plane is created */
 
     //getters
     public double getCurrentWeight(){

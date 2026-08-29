@@ -18,10 +18,6 @@ public class BusLane extends AirportPath {
     }
 
     // getters
-    /*public int getCurrentOccupancy() {
-      return 0;
-    }*/
-
     public int getCapacity() {
       return capacity;
     }
