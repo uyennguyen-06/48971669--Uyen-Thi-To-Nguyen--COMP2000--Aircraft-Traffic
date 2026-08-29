@@ -4,7 +4,7 @@ public class Plane {
     private double planeSpeed;
     private String status; 
     private final double emptyWeight;
-    private int capacity;
+    private final int capacity;
 
     public Plane(String planeID, String model, double planeSpeed, String status, double emptyWeight,  int capacity){
         this.planeID = planeID;
@@ -18,10 +18,6 @@ public class Plane {
     //setters
     public void setModel(String model){
         this.model = model;
-    }
-    
-    public void setCapacity(int capacity){
-        this.capacity = capacity;
     }
 
     public void setPlaneSpeed(float planeSpeed){
