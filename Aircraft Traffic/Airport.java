@@ -10,6 +10,7 @@ public class Airport {
     private ArrayList<CommercialPlane> commercialPlanes;
     private ArrayList<Plane> planes;
     private ArrayList<Runway> runways;
+    private ArrayList<Moveable> directions;
 
     public Airport(String airportName) {
         this.AirportName = airportName;
@@ -21,5 +22,6 @@ public class Airport {
         this.commercialPlanes = new ArrayList<>();
         this.planes = new ArrayList<>();
         this.runways = new ArrayList<>();
+        this.directions = new ArrayList<>();
     }
 }
