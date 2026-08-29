@@ -1,4 +1,4 @@
-public class Plane {
+public abstract class Plane {
     private final String planeID;
     private String model;
     private double planeSpeed;
