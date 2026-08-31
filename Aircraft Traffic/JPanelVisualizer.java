@@ -10,7 +10,7 @@ import javax.swing.Timer;
 public class JPanelVisualizer extends JPanel implements ActionListener {
    private Timer timer;
    private int secondsPerFrame = 10;
-   private Image icon = (new ImageIcon("Folder JUMPSCARE/cat.PNG")).getImage();
+   private Image icon = (new ImageIcon("Folder BACKGROUND/cat.PNG")).getImage();
    private int planeCount = (int)(Math.random() * (double)10.0F) + 1;
    private Plane[] planes;
 
