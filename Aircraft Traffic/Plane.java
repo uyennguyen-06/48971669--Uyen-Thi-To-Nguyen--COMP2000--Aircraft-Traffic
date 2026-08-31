@@ -5,11 +5,12 @@ public abstract class Plane {
     private String status; 
     private final double emptyWeight;
     private final int capacity;
+    private Moveable planePosition = new Moveable();
 
     public Plane(String planeID, String model, double planeSpeed, String status, double emptyWeight,  int capacity){
         this.planeID = planeID;
-        this.model = model;
-        this.planeSpeed = planeSpeed;
+        setModel(model);
+        setPlaneSpeed(planeSpeed);
         this.status = "GOUNDED"; // Default status of plane
         this.emptyWeight = emptyWeight;
         this.capacity = capacity;
@@ -20,12 +21,36 @@ public abstract class Plane {
         this.model = model;
     }
 
-    public void setPlaneSpeed(float planeSpeed){
+    public void setPlaneSpeed(double planeSpeed){
         this.planeSpeed = planeSpeed;
     }
 
     public void setStatus(String status){
         this.status = status;
+    }
+
+    public void setTarget(Vector2 newPos) {
+        this.planePosition.setTarget(newPos);
+    }
+
+    public void changeTarget() {
+        this.planePosition.changeTarget();
+    }
+
+    public void moveTowards(int speed) {
+        planePosition.moveTowards(speed);
+    }
+
+    public Moveable getLocation() {
+        return planePosition;
+    }
+
+    public boolean getReachedTarget() {
+        return planePosition.getReachedTarget();
+    }
+
+    public void setReachedTarget(boolean value) {
+        planePosition.setReachedTarget(value);
     }
     
     //getters
