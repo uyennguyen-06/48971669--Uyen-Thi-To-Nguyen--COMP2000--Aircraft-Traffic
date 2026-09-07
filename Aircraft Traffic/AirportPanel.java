@@ -45,8 +45,8 @@ public class AirportPanel extends JPanel {
         g.setStroke(new BasicStroke(1));
 
         g.drawRect(20,120, 60, 50);
-        g.drawRect(250,120, 60, 50);
-        g.drawRect(550,120, 60, 50);
+        g.drawRect(260,120, 60, 50);
+        g.drawRect(530,120, 60, 50);
         g.drawRect(760,120, 60, 50);
     }
 
@@ -57,11 +57,18 @@ public class AirportPanel extends JPanel {
     }
 
     private void drawGates(Graphics2D g){
-        
+        g.setColor(Color.BLACK);
+        g.drawRect(20, 600, 60, 30);
+        g.drawRect(200, 600, 60, 30);
+        g.drawRect(390, 600, 60, 30);
+        g.drawRect(580, 600, 60, 30);
+        g.drawRect(760, 600, 60, 30);
     }
 
     private void drawTerminals(Graphics2D g){
-        
+        g.setColor(Color.BLACK);
+        g.drawRect(20, 640, 800, 30);
+        g.drawString("Terminal", 400, 660);
     }
 
 }
