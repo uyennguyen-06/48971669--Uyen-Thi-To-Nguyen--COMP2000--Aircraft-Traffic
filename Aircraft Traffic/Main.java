@@ -22,7 +22,7 @@ public class Main{
                 JFrame.EXIT_ON_CLOSE
             );
 
-            frame.add(new AirportPanel());
+            frame.add(new AirportJPanel());
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);

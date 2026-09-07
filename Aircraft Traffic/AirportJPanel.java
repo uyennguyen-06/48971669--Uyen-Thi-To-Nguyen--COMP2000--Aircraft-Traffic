@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
-public class AirportPanel extends JPanel {
-    public AirportPanel(){
+public class AirportJPanel extends JPanel {
+    public AirportJPanel(){
         setSize(new Dimension(900, 900));
         setBackground(Color.decode("#af96d6"));
     }
@@ -27,6 +27,7 @@ public class AirportPanel extends JPanel {
         drawTaxiways(g);
         drawGates(g);
         drawTerminals(g);
+        drawAirportPath(g);
     }
 
     private void drawRunways(Graphics2D g){
@@ -44,10 +45,10 @@ public class AirportPanel extends JPanel {
         g.drawLine(20, 70, 820, 70);
         g.setStroke(new BasicStroke(1));
 
-        g.drawRect(20,120, 60, 50);
+        /*g.drawRect(20,120, 60, 50);
         g.drawRect(260,120, 60, 50);
         g.drawRect(530,120, 60, 50);
-        g.drawRect(760,120, 60, 50);
+        g.drawRect(760,120, 60, 50);*/
     }
 
     private void drawTaxiways(Graphics2D g){
@@ -69,6 +70,19 @@ public class AirportPanel extends JPanel {
         g.setColor(Color.BLACK);
         g.drawRect(20, 640, 800, 30);
         g.drawString("Terminal", 400, 660);
+    }
+
+    private void drawAirportPath(Graphics2D g){
+        g.setColor(Color.BLACK);
+        g.drawRect(20,120, 60, 50);
+        g.drawRect(260,120, 60, 50);
+        g.drawRect(530,120, 60, 50);
+        g.drawRect(760,120, 60, 50);
+
+        g.drawRect(20, 270, 60, 80);
+        g.drawRect(400, 270, 60, 80);
+        g.drawRect(760, 270, 60, 80);
+
     }
 
 }
