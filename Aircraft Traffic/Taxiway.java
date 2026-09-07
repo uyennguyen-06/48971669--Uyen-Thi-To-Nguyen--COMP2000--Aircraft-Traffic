@@ -1,11 +1,13 @@
 public class Taxiway extends AirportPath {
     private int capacity; 
     private double maxSpeedKnots;
+    private Plane plane; // The plane currently on the taxiway, if any
 
     public Taxiway(String pathID, double lengthInMeters, int capacity, double maxSpeedKnots){
         super(pathID, lengthInMeters);
         this.capacity = capacity;
         this.maxSpeedKnots = maxSpeedKnots;
+        this.plane = null; // Initially, no plane is on the taxiway
     } 
 
     //setters
@@ -17,6 +19,10 @@ public class Taxiway extends AirportPath {
       this.maxSpeedKnots = maxSpeedKnots;
     }
 
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
     // getters
     public int getCapacity() {
       return capacity;
@@ -24,6 +30,10 @@ public class Taxiway extends AirportPath {
 
     public double getMaxSpeedKnots() {
       return maxSpeedKnots;
+    }
+
+    public Plane getPlane() {
+        return plane;
     }
     
 }
