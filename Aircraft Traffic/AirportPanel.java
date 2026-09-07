@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,8 +8,8 @@ import javax.swing.JPanel;
 
 public class AirportPanel extends JPanel {
     public AirportPanel(){
-        setSize(new Dimension(800, 600));
-        setBackground(Color.lightGray);
+        setSize(new Dimension(900, 900));
+        setBackground(Color.decode("#af96d6"));
     }
 
     @Override 
@@ -30,11 +31,29 @@ public class AirportPanel extends JPanel {
 
     private void drawRunways(Graphics2D g){
         g.setColor(Color.BLACK);
-        g.drawRect(20,20,700,120);
+        g.drawRect(20,20,800,100);
+        g.drawString("Runway", 400, 50);
+
+        g.setStroke(new BasicStroke(
+            1, BasicStroke.CAP_BUTT, 
+            BasicStroke.JOIN_BEVEL, 
+            0, new float[]{9}, 
+            0
+        ));
+
+        g.drawLine(20, 70, 820, 70);
+        g.setStroke(new BasicStroke(1));
+
+        g.drawRect(20,120, 60, 50);
+        g.drawRect(250,120, 60, 50);
+        g.drawRect(550,120, 60, 50);
+        g.drawRect(760,120, 60, 50);
     }
 
     private void drawTaxiways(Graphics2D g){
-        
+        g.setColor(Color.BLACK);
+        g.drawRect(20, 170, 800, 100);
+        g.drawString("Taxiway", 400, 200);
     }
 
     private void drawGates(Graphics2D g){
