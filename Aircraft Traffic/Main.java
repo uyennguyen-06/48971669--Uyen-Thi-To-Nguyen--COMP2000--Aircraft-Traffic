@@ -1,10 +1,11 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+
 
 public class Main{
     public static void main (String[] args){
         System.out.println("Program started!");
        
-        JFrame mainPanel = new JFrame();
+        /*JFrame mainPanel = new JFrame();
         mainPanel.setName("This is the simulation"); // ID
         mainPanel.setTitle("Airport Simulation"); // title of tab
         mainPanel.setSize(1000, 800); // size, duh
@@ -13,7 +14,18 @@ public class Main{
         // adding the elements
         mainPanel.add(plaeTemp); // adds objects
         
-        mainPanel.setVisible(true); // whoa, i can see clearly now
-        
+        mainPanel.setVisible(true); // whoa, i can see clearly now*/
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Airport Simulation");
+
+            frame.setDefaultCloseOperation(
+                JFrame.EXIT_ON_CLOSE
+            );
+
+            frame.add(new AirportPanel());
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
     }
 }
