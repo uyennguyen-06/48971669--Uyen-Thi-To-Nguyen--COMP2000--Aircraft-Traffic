@@ -1,5 +1,5 @@
 
-public class Node {
+public class Node /*implements Position*/ {
     public String NodeID;
     Node upperNode;
     Node bottomNode;
