@@ -7,10 +7,19 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.Polygon;
+import java.awt.Point;
 
 public class AirportJPanel extends JPanel {
     private int[] planeX = {30, 210, 400, 590, 770}; 
     private int[] planeY = {550, 550, 550, 550, 550};
+    private Point[] route = {
+        new Point(100, 350),
+        new Point(100, 250),
+        new Point(550, 250),
+        new Point(550, 150),
+        new Point(550, 80)
+    };
+    private int waypoints = 0;
     private int movingPlane = 0;
 
     public AirportJPanel(){
@@ -21,7 +30,7 @@ public class AirportJPanel extends JPanel {
             int runwayY = 70; 
 
             if (planeY[movingPlane] > runwayY) {
-                planeY[movingPlane] -= 2; 
+                planeY[movingPlane] -= 3; 
                 repaint();
             } else {
                 ((Timer) event.getSource()).stop();
