@@ -5,11 +5,30 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+import java.awt.Polygon;
 
 public class AirportJPanel extends JPanel {
+    private int[] planeX = {30, 210, 400, 590, 770}; 
+    private int[] planeY = {550, 550, 550, 550, 550};
+    private int movingPlane = 0;
+
     public AirportJPanel(){
         setSize(new Dimension(900, 900));
-        setBackground(Color.decode("#af96d6"));
+        setBackground(Color.decode("#5aa161"));
+
+        Timer timer = new Timer(30, event -> {
+            int runwayY = 70; 
+
+            if (planeY[movingPlane] > runwayY) {
+                planeY[movingPlane] -= 2; 
+                repaint();
+            } else {
+                ((Timer) event.getSource()).stop();
+            }
+        });
+
+        timer.start();
     }
 
     @Override 
@@ -28,6 +47,10 @@ public class AirportJPanel extends JPanel {
         drawGates(g);
         drawTerminals(g);
         drawAirportPath(g);
+        
+        for (int i = 0; i < planeX.length; i++){
+            drawPlane(g, planeX[i], planeY[i]);
+        }
     }
 
     private void drawRunways(Graphics2D g){
@@ -44,11 +67,6 @@ public class AirportJPanel extends JPanel {
 
         g.drawLine(20, 70, 820, 70);
         g.setStroke(new BasicStroke(1));
-
-        /*g.drawRect(20,120, 60, 50);
-        g.drawRect(260,120, 60, 50);
-        g.drawRect(530,120, 60, 50);
-        g.drawRect(760,120, 60, 50);*/
     }
 
     private void drawTaxiways(Graphics2D g){
@@ -82,7 +100,19 @@ public class AirportJPanel extends JPanel {
         g.drawRect(20, 270, 60, 80);
         g.drawRect(400, 270, 60, 80);
         g.drawRect(760, 270, 60, 80);
+    }
 
+    private void drawPlane(Graphics2D g, int x, int y){
+        Polygon plane = new Polygon();
+
+        plane.addPoint(x +20, y); 
+        plane.addPoint(x, y + 40); 
+        plane.addPoint(x +40, y +40);
+
+        g.setColor(Color.WHITE);
+        g.fillPolygon(plane);
+        g.setColor(Color.BLACK);
+        g.drawPolygon(plane);
     }
 
 }

@@ -92,4 +92,5 @@ public abstract class Plane {
         System.out.println("Destination: " + getPlaneSpeed());
         System.out.println(getStatus());
     }
+    
 }
