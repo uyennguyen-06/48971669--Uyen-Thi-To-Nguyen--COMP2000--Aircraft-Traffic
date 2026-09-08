@@ -1,5 +1,5 @@
 
-public class Node /*implements Position*/ {
+public class Node implements Position {
     public String NodeID;
     Node upperNode;
     Node bottomNode;
@@ -62,13 +62,13 @@ public class Node /*implements Position*/ {
         this.rightNode = newNode;
     }
     
-   /* public void setXPos(int xpos) {
+    public void setXPos(int xpos) {
         nodePosition.xPos = xpos;
     }
 
     public void setYPos(int ypos) {
         nodePosition.yPos = ypos;
-    }*/
+    }
 
     public void setOccupied(boolean value) {
         isOccupied = value;
@@ -91,13 +91,13 @@ public class Node /*implements Position*/ {
         return rightNode;
     }
 
-    /*public int getXPos() {
+    public int getXPos() {
         return nodePosition.xPos;
     }
 
     public int getYPos() {
         return nodePosition.yPos;
-    }*/
+    }
 
     public boolean getOccupied() {
         return isOccupied;

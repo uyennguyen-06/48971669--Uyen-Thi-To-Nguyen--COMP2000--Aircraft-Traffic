@@ -1,3 +1,4 @@
+import javax.swing.*;
 
 
 public class Main{
@@ -14,17 +15,18 @@ public class Main{
         mainPanel.add(plaeTemp); // adds objects
         
         mainPanel.setVisible(true); // whoa, i can see clearly now*/
-        /*SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Airport Simulation");
 
             frame.setDefaultCloseOperation(
                 JFrame.EXIT_ON_CLOSE
             );
+
             
             frame.add(new AirportJPanel());
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-        });*/
+        });
     }
 }

@@ -56,16 +56,16 @@ public class Moveable {
     }
 
     public void moveTowardsTargetYAxis(int speed) {
-        if (target.getyPos() > this.yPos) {
+        if (target.getYPos() > this.yPos) {
             yPos += speed;
         }
-        if (target.getyPos() < this.yPos) {
+        if (target.getYPos() < this.yPos) {
             yPos += -speed;
         }
     }
 
     public boolean checkIfReachTarget() {
-        if (this.xPos == target.getXPos() && this.yPos == target.getyPos()) {
+        if (this.xPos == target.getXPos() && this.yPos == target.getYPos()) {
             return true;
         }
         return false;
