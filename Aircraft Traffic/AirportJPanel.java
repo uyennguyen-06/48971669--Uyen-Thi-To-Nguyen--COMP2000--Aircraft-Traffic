@@ -30,7 +30,7 @@ public class AirportJPanel extends JPanel {
 
         Timer timer = new Timer(30, event -> {
         for (Plane plane : airport.getPlanes()) {
-            plane.updateMovement();
+            plane.updateMovement(airport.getRunway(), airport.getRunwayEntrance());
         }
         repaint();
     });

@@ -178,32 +178,45 @@ public abstract class Plane {
     targetNode = null;
     }
     
-    public void updateMovement() {
-    if (route == null) {
-        return;
-    }
-
-    // Plane needs another target
-    if (targetNode == null) {
-        int nextIndex = currentRouteIndex + 1;
-
-        // Route is finished
-        if (nextIndex >= route.getNumberOfNodes()) {
+    public void updateMovement(Runway runway, Node runwayEntranceNode) {
+        if (route == null) {
             return;
         }
 
-        Node nextNode = route.getNode(nextIndex);
+        // Plane needs another target
+        if (targetNode == null) {
+            int nextIndex = currentRouteIndex + 1;
 
-        // Another plane is using it, so wait
-        if (!nextNode.reserve(this)) {
-            return;
-        }
+            // Route is finished
+            if (nextIndex >= route.getNumberOfNodes()) {
+                return;
+            }
+
+            Node nextNode = route.getNode(nextIndex);
+
+            if (!nextNode.reserve(this)) {
+                setStatus("WAITING");
+                return;
+            }
+
+            // Plane is attempting to enter the runway
+            if (nextNode == runwayEntranceNode) {
+                boolean accepted =
+                    attemptRunwayEntry(runway);
+
+                if (!accepted) {
+                    // Give the node back because the runway is occupied
+                    nextNode.release(this);
+                    return;
+                }
+            }
 
         targetNode = nextNode;
+        setStatus("MOVING");
     }
 
-        moveTowardsTarget();
-    }
+    moveTowardsTarget();
+}
 
     public boolean attemptRunwayEntry(Runway runway) {
         try {
@@ -211,7 +224,7 @@ public abstract class Plane {
             setStatus("ON RUNWAY");
             System.out.println(getPlaneID() + " can enter the runway.");
             return true;
-            
+
     } catch (RunwayOccupiedException exception) {
         setStatus("WAITING");
         System.out.println(getPlaneID() + " is waiting: " + exception.getMessage());

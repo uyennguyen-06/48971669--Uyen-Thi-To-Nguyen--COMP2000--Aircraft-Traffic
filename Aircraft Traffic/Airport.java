@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Airport {
+    private Runway runway;
     private Node gateNode;
     private Node taxiwayNode;
     private Node runwayNode;
@@ -8,6 +9,7 @@ public class Airport {
     private Node upperPathNode;
     private Node runwayEntrance;
     private Node runwayExit;
+    private Node holdingNode;
     private Route departureRoute;
     private Route arrivalRoute;
     private final ArrayList<Plane> planes = new ArrayList<>();
@@ -62,5 +64,13 @@ public class Airport {
 
     public ArrayList<Plane> getPlanes() {
         return planes;
+    }
+
+    public Runway getRunway() {
+    return runway;
+}
+
+    public Node getRunwayEntrance() {
+        return runwayEntrance;
     }
 }
