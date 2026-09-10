@@ -47,6 +47,11 @@ public class Airport {
         lowerPathNode = new Node("Lower Path", new Vector2(35, 350));
         lowerPathNode2 = new Node("Lower Path 2", new Vector2(200, 350));
         lowerPathNode3 = new Node("Lower Path 3", new Vector2(390, 350)); 
+    
+        upperPathNode = new Node("Upper Path", new Vector2(35, 120));
+        upperPathNode2 = new Node("Upper Path 2", new Vector2());
+        upperPathNode3 = new Node("Upper Path 2", new Vector2());
+        upperPathNode4 = new Node("Upper Path 2", new Vector2());
 
         taxiwayNode = new Node("Taxiway 1", new Vector2(35, 280));
         runwayNode = new Node("Runway 1", new Vector2(35, 90));
@@ -64,12 +69,12 @@ public class Airport {
         routeGate1.addNode(runwayExit);
 
         routeGate2 = new Route();
-        routeGate2.addNode(runwayExit);
-        routeGate2.addNode(runwayEntrance);
-        routeGate2.addNode(upperPathNode4);
+        routeGate2.addNode(gateNode2);
+        routeGate2.addNode(lowerPathNode2);
         routeGate2.addNode(taxiwayNode);
-        routeGate2.addNode(lowerPathNode3);
-        routeGate2.addNode(gateNode5);
+        routeGate2.addNode(upperPathNode2);
+        routeGate2.addNode(runwayEntrance);
+        routeGate2.addNode(runwayExit);
     }
 
     public Route getRouteGate1() {
