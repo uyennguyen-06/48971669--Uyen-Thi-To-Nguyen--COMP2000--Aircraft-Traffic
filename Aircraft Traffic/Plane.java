@@ -209,7 +209,6 @@ public abstract class Plane {
         if (!nextNode.reserve(this)) {
             return;
         }
-
         targetNode = nextNode;
     }
 

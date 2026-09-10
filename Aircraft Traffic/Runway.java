@@ -52,7 +52,6 @@ public class Runway extends AirportPath{
             "The runway is occupied by another plane."
         );
     }
-
     currentPlane = plane;
     }
 
