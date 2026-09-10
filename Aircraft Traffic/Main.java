@@ -19,10 +19,15 @@ public class Main{
             frame.setLocationRelativeTo(null);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setVisible(true);
+            
 
             CargoPlane cargoPlane = new CargoPlane("CP001", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
-            cargoPlane.setRoute(airport.getDepartureRoute());
+            cargoPlane.setRoute(airport.getRouteGate1());
             airport.addPlane(cargoPlane);
+
+            CargoPlane passengerPlane = new CargoPlane("CP002", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
+            passengerPlane.setRoute(airport.getRouteGate2());
+            airport.addPlane(passengerPlane);
         });
     }
 }

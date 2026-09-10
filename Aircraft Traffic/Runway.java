@@ -7,7 +7,7 @@ public class Runway extends AirportPath{
         super(pathID, lengthInMeters);
         this.capacity = capacity;
         this.status = status;
-        this.currentPlane = currentPlane;
+        this.currentPlane = null; // Initially, no plane is on the runway
     }
 
     //setters
@@ -47,17 +47,17 @@ public class Runway extends AirportPath{
     public void requestEntry(Plane plane)
         throws RunwayOccupiedException {
 
-        if (currentPlane != null) {
-            throw new RunwayOccupiedException(
-                "Runway is already occupied by "
-                + currentPlane.getPlaneID()
-            );
-        }
-            currentPlane = plane;
+    if (currentPlane != null && currentPlane != plane) {
+        throw new RunwayOccupiedException(
+            "The runway is occupied by another plane."
+        );
     }
 
-    public void exitRunway(Plane plane) {
-        if (currentPlane == plane) {
+    currentPlane = plane;
+    }
+
+    public void exitRunway(Plane plane){
+        if (currentPlane == plane){
             currentPlane = null;
         }
     }

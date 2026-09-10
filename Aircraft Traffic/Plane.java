@@ -9,7 +9,7 @@ public abstract class Plane {
     
     private Vector2 position;
     private Route route;
-    private int currentRouteIndex;
+    private int currentRouteIndex = 0;
     private Node currentNode;
     private Node targetNode;
 
@@ -176,60 +176,59 @@ public abstract class Plane {
     currentNode = targetNode;
     currentRouteIndex++;
     targetNode = null;
-    }
+}
     
-    public void updateMovement(Runway runway, Node runwayEntranceNode) {
+    public void updateMovement(Runway runway, Node runwayEntranceNode, Node runwayExitNode) {
         if (route == null) {
+        System.out.println(getPlaneID() + ": route is null");
+        return;
+    }
+
+    if (targetNode == null) {
+        int nextIndex = currentRouteIndex + 1;
+
+        if (nextIndex >= route.getNumberOfNodes()) {
+            System.out.println(
+                getPlaneID()
+                + ": route finished at index "
+                + currentRouteIndex
+            );
             return;
         }
 
-        // Plane needs another target
-        if (targetNode == null) {
-            int nextIndex = currentRouteIndex + 1;
+        Node nextNode = route.getNode(nextIndex);
 
-            // Route is finished
-            if (nextIndex >= route.getNumberOfNodes()) {
-                return;
+        if (nextNode == runwayEntranceNode) {
+            boolean accepted = attemptRunwayEntry(runway);
+
+            if (!accepted) {
+                return; // Stay at the previous node and wait
             }
+        }
 
-            Node nextNode = route.getNode(nextIndex);
-
-            if (!nextNode.reserve(this)) {
-                setStatus("WAITING");
-                return;
-            }
-
-            // Plane is attempting to enter the runway
-            if (nextNode == runwayEntranceNode) {
-                boolean accepted =
-                    attemptRunwayEntry(runway);
-
-                if (!accepted) {
-                    // Give the node back because the runway is occupied
-                    nextNode.release(this);
-                    return;
-                }
-            }
+        if (!nextNode.reserve(this)) {
+            return;
+        }
 
         targetNode = nextNode;
-        setStatus("MOVING");
     }
 
     moveTowardsTarget();
-}
 
-    public boolean attemptRunwayEntry(Runway runway) {
-        try {
-            runway.requestEntry(this);
-            setStatus("ON RUNWAY");
-            System.out.println(getPlaneID() + " can enter the runway.");
-            return true;
-
-    } catch (RunwayOccupiedException exception) {
-        setStatus("WAITING");
-        System.out.println(getPlaneID() + " is waiting: " + exception.getMessage());
-        return false;
+    if (currentNode == runwayExitNode) {
+        runway.exitRunway(this);
     }
 }
+
+
+    public boolean attemptRunwayEntry(Runway runway) {
+    try {
+            runway.requestEntry(this);
+            return true;
+    } catch (RunwayOccupiedException exception) {
+            setStatus("WAITING");
+            return false;
+        }
+    }
    
 }

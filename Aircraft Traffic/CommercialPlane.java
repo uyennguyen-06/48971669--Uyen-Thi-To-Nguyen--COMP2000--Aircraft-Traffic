@@ -2,7 +2,7 @@ public class CommercialPlane extends Plane {
     private final int numSeats;
     private int currentPassengers;
 
-    public CommercialPlane(String planeID, String model, double planeSpeed, String status, double emptyWeight, int capacity, int numSeats, int curretnPassengers) {
+    public CommercialPlane(String planeID, String model, double planeSpeed, String status, double emptyWeight, int capacity, int numSeats, int currentPassengers) {
         super(planeID, model, planeSpeed, status, emptyWeight, capacity);
         this.numSeats = numSeats;
         this.currentPassengers = currentPassengers;

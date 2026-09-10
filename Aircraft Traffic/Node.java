@@ -31,4 +31,8 @@ public class Node {
     public Vector2 getPosition() {
         return position;
     }
+
+    public String getNodeID() {
+        return nodeID;
+    }
 }
