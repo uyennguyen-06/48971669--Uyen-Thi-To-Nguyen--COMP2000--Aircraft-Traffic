@@ -6,7 +6,8 @@ public abstract class Plane {
     private final double emptyWeight;
     private final int capacity;
     private Moveable planePosition = new Moveable();
-
+    
+    private Vector2 position;
     private Route route;
     private int currentRouteIndex;
     private Node currentNode;
@@ -103,15 +104,105 @@ public abstract class Plane {
         return false;
     }
 
-    Node nextNode =
-        route.getNode(currentRouteIndex + 1);
+    Node nextNode = route.getNode(currentRouteIndex + 1);
 
     if (nextNode.reserve(this)) {
         targetNode = nextNode;
         return true;
     }
+        return false;
+    }
 
-    return false;
-}
+    public void setRoute(Route route) {
+        this.route = route;
+        this.currentRouteIndex = 0;
+
+        this.currentNode = route.getNode(0);
+        this.position = currentNode.getPosition();
+        this.targetNode = null;
+
+        currentNode.reserve(this);
+    }
+
+    public void moveTowardsTarget() {
+    Vector2 targetPosition = targetNode.getPosition();
+
+    double differenceX =
+        targetPosition.getXPos() - position.getXPos();
+
+    double differenceY =
+        targetPosition.getYPos() - position.getYPos();
+
+    double distance = Math.sqrt(
+        differenceX * differenceX
+        + differenceY * differenceY
+    );
+
+    double movementSpeed = 4.0;
+
+    if (distance <= movementSpeed) {
+        // Snap exactly onto the node
+        position = new Vector2(
+            targetPosition.getXPos(),
+            targetPosition.getYPos()
+        );
+
+        arriveAtTarget();
+    } else {
+        // Move a small distance toward the node
+        double newX =
+            position.getXPos()
+            + differenceX / distance * movementSpeed;
+
+        double newY =
+            position.getYPos()
+            + differenceY / distance * movementSpeed;
+
+        position = new Vector2(
+        (int) Math.round(newX),
+        (int) Math.round(newY));
+    }
+    }
+
+    private void arriveAtTarget() {
+    if (currentNode != null) {
+        currentNode.release(this);
+    }
+
+    currentNode = targetNode;
+    currentRouteIndex++;
+    targetNode = null;
+    }
+    
+    public void updateMovement() {
+    if (route == null) {
+        return;
+    }
+
+    // Plane needs another target
+    if (targetNode == null) {
+        int nextIndex = currentRouteIndex + 1;
+
+        // Route is finished
+        if (nextIndex >= route.getNumberOfNodes()) {
+            return;
+        }
+
+        Node nextNode = route.getNode(nextIndex);
+
+        // Another plane is using it, so wait
+        if (!nextNode.reserve(this)) {
+            return;
+        }
+
+        targetNode = nextNode;
+    }
+
+        moveTowardsTarget();
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
     
 }

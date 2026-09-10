@@ -2,7 +2,7 @@ public class CargoPlane extends Plane{
     private final double maxWeight; // in KG
     private double currentWeight;
 
-    public CargoPlane(String planeID, String model, double planeSpeed, String status, double emptyWeight, double maxWeight, double currentWeight, int capacity){
+    public CargoPlane(String planeID, String model, String status, double planeSpeed, double emptyWeight, double maxWeight, double currentWeight, int capacity){
         super(planeID, model, planeSpeed, status, emptyWeight, capacity);
         this.maxWeight = maxWeight;
 

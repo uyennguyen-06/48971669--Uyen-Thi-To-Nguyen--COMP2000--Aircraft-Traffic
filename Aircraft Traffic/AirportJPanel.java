@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -19,29 +18,29 @@ public class AirportJPanel extends JPanel {
         new Point(550, 150),
         new Point(550, 80)
     };
-    private int waypoints = 0;
+    private Airport airport;
     private int movingPlane = 0;
 
-    public AirportJPanel(){
+    
+
+    public AirportJPanel(Airport airport){
         setSize(new Dimension(900, 900));
         setBackground(Color.decode("#5aa161"));
+        this.airport = airport;
 
         Timer timer = new Timer(30, event -> {
-            int runwayY = 70; 
-
-            if (planeY[movingPlane] > runwayY) {
-                planeY[movingPlane] -= 3; 
-                repaint();
-            } else {
-                ((Timer) event.getSource()).stop();
-            }
-        });
+        for (Plane plane : airport.getPlanes()) {
+            plane.updateMovement();
+        }
+        repaint();
+    });
 
         timer.start();
     }
 
     @Override 
     public void paintComponent(Graphics graphics){
+        System.out.println("Number of planes: " + airport.getPlanes().size());
         super.paintComponent(graphics);
 
         Graphics2D g = (Graphics2D) graphics;
@@ -57,8 +56,16 @@ public class AirportJPanel extends JPanel {
         drawTerminals(g);
         drawAirportPath(g);
         
-        for (int i = 0; i < planeX.length; i++){
-            drawPlane(g, planeX[i], planeY[i]);
+        for (Plane plane : airport.getPlanes()) {
+            Vector2 position = plane.getPosition();
+
+            if (position != null) {
+                drawPlane(
+                    g,
+                    position.getXPos(),
+                    position.getYPos()
+                );
+            }
         }
     }
 
@@ -111,17 +118,16 @@ public class AirportJPanel extends JPanel {
         g.drawRect(760, 270, 60, 80);
     }
 
-    private void drawPlane(Graphics2D g, int x, int y){
-        Polygon plane = new Polygon();
+    private void drawPlane(Graphics2D g, int x, int y) {
+    int diameter = 30;
 
-        plane.addPoint(x +20, y); 
-        plane.addPoint(x, y + 40); 
-        plane.addPoint(x +40, y +40);
+    // Fill the circle
+    g.setColor(Color.WHITE);
+    g.fillOval(x, y, diameter, diameter);
 
-        g.setColor(Color.WHITE);
-        g.fillPolygon(plane);
-        g.setColor(Color.BLACK);
-        g.drawPolygon(plane);
-    }
+    // Draw the outline
+    g.setColor(Color.BLACK);
+    g.drawOval(x, y, diameter, diameter);
+}
 
 }

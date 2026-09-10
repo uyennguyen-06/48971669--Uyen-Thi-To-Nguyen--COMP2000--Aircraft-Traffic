@@ -5,16 +5,6 @@ public class Main{
     public static void main (String[] args){
         System.out.println("Program started!");
        
-        /*JFrame mainPanel = new JFrame();
-        mainPanel.setName("This is the simulation"); // ID
-        mainPanel.setTitle("Airport Simulation"); // title of tab
-        mainPanel.setSize(1000, 800); // size, duh
-        mainPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // ensure jpanel tab can close
-        JPanelVisualizer plaeTemp = new JPanelVisualizer(); // creates objects
-        // adding the elements
-        mainPanel.add(plaeTemp); // adds objects
-        
-        mainPanel.setVisible(true); // whoa, i can see clearly now*/
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Airport Simulation");
 
@@ -22,11 +12,17 @@ public class Main{
                 JFrame.EXIT_ON_CLOSE
             );
 
-            
-            frame.add(new AirportJPanel());
+            Airport airport = new Airport();
+            AirportJPanel panel = new AirportJPanel(airport);
+            frame.add(panel);
             frame.pack();
             frame.setLocationRelativeTo(null);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setVisible(true);
+
+            CargoPlane cargoPlane = new CargoPlane("CP001", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
+            cargoPlane.setRoute(airport.getDepartureRoute());
+            airport.addPlane(cargoPlane);
         });
     }
 }
