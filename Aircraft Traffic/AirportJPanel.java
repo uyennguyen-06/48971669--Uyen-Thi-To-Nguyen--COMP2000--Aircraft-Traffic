@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Polygon;
-import java.awt.Point;
 
 public class AirportJPanel extends JPanel {
     private int[] planeX = {30, 210, 400, 590, 770}; 

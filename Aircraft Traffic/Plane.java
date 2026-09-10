@@ -7,6 +7,11 @@ public abstract class Plane {
     private final int capacity;
     private Moveable planePosition = new Moveable();
 
+    private Route route;
+    private int currentRouteIndex;
+    private Node currentNode;
+    private Node targetNode;
+
     public Plane(String planeID, String model, double planeSpeed, String status, double emptyWeight,  int capacity){
         this.planeID = planeID;
         setModel(model);
@@ -92,5 +97,21 @@ public abstract class Plane {
         System.out.println("Destination: " + getPlaneSpeed());
         System.out.println(getStatus());
     }
+
+    public boolean prepareNextMovement() {
+    if (currentRouteIndex + 1 >= route.getNumberOfNodes()) {
+        return false;
+    }
+
+    Node nextNode =
+        route.getNode(currentRouteIndex + 1);
+
+    if (nextNode.reserve(this)) {
+        targetNode = nextNode;
+        return true;
+    }
+
+    return false;
+}
     
 }
