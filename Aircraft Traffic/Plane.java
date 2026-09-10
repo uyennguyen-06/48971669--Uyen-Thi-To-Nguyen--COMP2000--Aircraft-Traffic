@@ -91,6 +91,10 @@ public abstract class Plane {
         return emptyWeight;
     }
 
+    public Vector2 getPosition() {
+        return position;
+    }
+
     public void displayInfo(){
         System.out.println("Plane ID: " + getPlaneID());
         System.out.println("Model: " + getModel());
@@ -201,8 +205,18 @@ public abstract class Plane {
         moveTowardsTarget();
     }
 
-    public Vector2 getPosition() {
-        return position;
+    public boolean attemptRunwayEntry(Runway runway) {
+        try {
+            runway.requestEntry(this);
+            setStatus("ON RUNWAY");
+            System.out.println(getPlaneID() + " can enter the runway.");
+            return true;
+            
+    } catch (RunwayOccupiedException exception) {
+        setStatus("WAITING");
+        System.out.println(getPlaneID() + " is waiting: " + exception.getMessage());
+        return false;
     }
-    
+}
+   
 }

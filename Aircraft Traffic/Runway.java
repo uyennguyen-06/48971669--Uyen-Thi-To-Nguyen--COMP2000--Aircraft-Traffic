@@ -44,16 +44,20 @@ public class Runway extends AirportPath{
         return false;
     }
 
-    public void requestEntry(Plane plane){
-        throws RunwayOccupiedException{ 
-            if (currentPlane != null){
-                throw new RunwayOccupiedException("Runway is currently occupied by " + currentPlane.getPlaneID());
-            }
+    public void requestEntry(Plane plane)
+        throws RunwayOccupiedException {
+
+        if (currentPlane != null) {
+            throw new RunwayOccupiedException(
+                "Runway is already occupied by "
+                + currentPlane.getPlaneID()
+            );
+        }
             currentPlane = plane;
     }
 
-    public void exitRunway(Plane plane){
-        if (currentPlane == plane){
+    public void exitRunway(Plane plane) {
+        if (currentPlane == plane) {
             currentPlane = null;
         }
     }
