@@ -45,7 +45,7 @@ public class Airport {
         gateNode5 = new Node("Gate 5", new Vector2(760, 580));
 
         lowerPathNode = new Node("Lower Path", new Vector2(35, 350));
-        lowerPathNode2 = new Node("Lower Path 2", new Vector2(200, 350));
+        lowerPathNode2 = new Node("Lower Path 2", new Vector2(413, 350));
         lowerPathNode3 = new Node("Lower Path 3", new Vector2(390, 350)); 
     
         upperPathNode = new Node("Upper Path", new Vector2(35, 120));

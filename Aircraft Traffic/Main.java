@@ -25,9 +25,9 @@ public class Main{
             cargoPlane.setRoute(airport.getRouteGate1());
             airport.addPlane(cargoPlane);
 
-            /*CargoPlane passengerPlane = new CargoPlane("CP002", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
+            CargoPlane passengerPlane = new CargoPlane("CP002", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
             passengerPlane.setRoute(airport.getRouteGate2());
-            airport.addPlane(passengerPlane);*/
+            airport.addPlane(passengerPlane);
         });
     }
 }
