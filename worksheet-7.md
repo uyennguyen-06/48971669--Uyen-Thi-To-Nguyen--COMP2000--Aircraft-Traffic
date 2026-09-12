@@ -128,6 +128,8 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 [View my logbook](COMP2000- 48971669 Log Book.pdf) 
 
+Logbook is included in repository
+
 
 **4.2.** Which week's activity taught you the most? What did you learn?
 
