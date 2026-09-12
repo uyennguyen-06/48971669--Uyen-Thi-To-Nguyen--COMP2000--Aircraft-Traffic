@@ -126,7 +126,7 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **4.1.** Attach or link your log book entries for Weeks 1–6.
 
-[View my logbook](COMP2000- 48971669 Log Book.pdf) 
+[View my logbook]("C:\Users\Nguye\OneDrive\Documents\GitHub\48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic\COMP2000- 48971669 Log Book.pdf") 
 
 Logbook is included in repository
 
