@@ -16,7 +16,6 @@
 
 
 
-
 ```
 
 **1.2.** Describe your workflow. Did you use branches? Pull requests?
@@ -27,9 +26,9 @@
 
 **1.3.** Estimate the percentage of commits you contributed relative to the total in your repository.
 
-
-
-
+- I've contributed around 20-30% in group work beause we have 5-7 members discussing our assignments in class as well as explaining to each other why we use the functions in our code before push it to the repository. 
+- Personally in my own repository, I've contributed around 80% because I have come up with my own Airport design for my simulation, hence why my movement is a lot different from what my teammate's work might be. 
+- We work as a team in class but off-class, we all come up with our own ideas based on our creativies. Which explains why some part of my code are borrowed from my group's work but some are my own. And vice versa, my teammate can borrow some of my code and put it in their work then come up with additional ideas for their simulations. 
 
 ---
 
