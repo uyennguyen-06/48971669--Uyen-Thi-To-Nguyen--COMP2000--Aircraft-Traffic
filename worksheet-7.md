@@ -126,7 +126,7 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **4.1.** Attach or link your log book entries for Weeks 1–6.
 
-[View my logbook]() 
+[View my logbook](COMP2000- 48971669 Log Book.pdf) 
 
 
 **4.2.** Which week's activity taught you the most? What did you learn?
