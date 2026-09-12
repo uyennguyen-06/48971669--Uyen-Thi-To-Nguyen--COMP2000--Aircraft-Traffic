@@ -96,8 +96,6 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 
 
-
-
 ---
 
 ## 3. Generics and Exceptions
@@ -117,6 +115,17 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 **3.3.** Paste a code snippet showing either a generic class/method or a try/catch block.
 
 
+Boolean method of try/catch block 
+
+public boolean attemptRunwayEntry(Runway runway) {
+    try {
+            runway.requestEntry(this);
+            return true;
+    } catch (RunwayOccupiedException exception) {
+            setStatus("WAITING");
+            return false;
+        }
+    }
 
 
 
@@ -128,10 +137,14 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 [View my logbook](COMP2000-48971669-LogBook.pdf) 
 
-Logbook is included in repository
+Logbook is also included in repository (inside worksheet folder)
 
 
 **4.2.** Which week's activity taught you the most? What did you learn?
+
+- Week2 taught me the most because it helped me build a base knowledge for this unit and it also showed me how git commands is used in git bash which is a new thing to me at that time. 
+
+- And these has helped me throughout 7 weeks of this unit where i can learn how to do my work, and then share it with my teammates and then update my work by pulling their adjustments onto my repository. 
 
 ---
 
@@ -139,6 +152,14 @@ Logbook is included in repository
 
 **5.1.** List everything you added to the project that was not part of the in-class activities.
 
+- I have created 2 new classes for my future (ideally week13 submission), which is Bus.java and BusLane.java. 
+- I also removed unused files or classes in my teammate's work and adjust it so it could fit into my personal project. 
+- I help my teammate with the design layout but i've also build my own layout of the individual project which is completely different from my teammate's colorful design. My design includes a simple drawing of the airport from above, which contains simple drawing on a blank board. 
+
 **5.2.** Which feature required the most independent research or problem-solving? What did you learn from it?
 
+- Figuring out how to set the plane movement and set route for each planes is the most difficult task for me. Since i have to find out a way for plane to move on the path without crashing but also have to find a way to make the code more accessable rather than picking each route for each planes spawning. 
+- I'm still trying to find a way to do it, and i've learnt from my group's work on how to start building it and hopefully in the future i can fully implement this. 
+
 **5.3.** Paste one code snippet that you are especially proud of. Explain why it goes beyond what was done in class.
+

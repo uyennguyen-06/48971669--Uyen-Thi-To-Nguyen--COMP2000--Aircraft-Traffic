@@ -189,10 +189,7 @@ public abstract class Plane {
 
         if (nextIndex >= route.getNumberOfNodes()) {
             System.out.println(
-                getPlaneID()
-                + ": route finished at index "
-                + currentRouteIndex
-            );
+                getPlaneID() + ": route finished at index " + currentRouteIndex);
             return;
         }
 
