@@ -47,13 +47,6 @@ public abstract class Plane {
         planePosition.moveTowards(speed);
     }
 
-    public Moveable getLocation() {
-        return planePosition;
-    }
-
-    public boolean getReachedTarget() {
-        return planePosition.getReachedTarget();
-    }
 
     public void setReachedTarget(boolean value) {
         planePosition.setReachedTarget(value);
@@ -70,6 +63,14 @@ public abstract class Plane {
 
     public double getPlaneSpeed(){
         return planeSpeed;
+    }
+
+    public Moveable getLocation() {
+        return planePosition;
+    }
+
+    public boolean getReachedTarget() {
+        return planePosition.getReachedTarget();
     }
 
     public String getStatus(){

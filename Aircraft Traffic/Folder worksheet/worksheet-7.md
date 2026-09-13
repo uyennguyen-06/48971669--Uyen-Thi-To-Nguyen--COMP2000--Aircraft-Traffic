@@ -29,7 +29,6 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 - I did a few pull request from my group's work at around week 1 to week 3 where we started building our base of the project, and also commit and push my code to my group's repository.
 - Our team used GitHub to collaborate and manage the project files. Each team member worked on their assigned classes locally, committed their changes, and pushed them to the shared repository. We regularly pulled the latest changes to keep our local copies updated. We worked on the main branch while also keep our separate branches updated. Before pushing, we communicated with each other to reduce merge conflicts.
 
--------------------------------------------------
 
 **1.3.** Estimate the percentage of commits you contributed relative to the total in your repository.
 
@@ -100,7 +99,40 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **2.4.** Paste one code snippet that demonstrates your use of polymorphism or encapsulation.  Include an explanation of _how_ this demonstrates polymorphim or encapsulation.  Give a reference to a provided reading that talks about this type of polymorphism or encapsulation.
 
------------------------------------------------------------
+public abstract class Plane {
+    private final String planeID;
+    private String model;
+    private double planeSpeed;
+    private String status; 
+    private final double emptyWeight;
+    private final int capacity;
+
+    public void setPlaneSpeed(double planeSpeed) {
+        this.planeSpeed = planeSpeed;
+    }
+
+    public double getPlaneSpeed(){
+        return planeSpeed;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus(){
+        if(status.equals("GOUNDED")){
+            System.out.println("Status: " + planeID + " is grounded.");
+        } else if (status.equals("BOARDING")){
+            System.out.println("Status: " + planeID + " is boarding.");
+        } else if (status.equals("IN-FLIGHT")){
+            System.out.println("Status: " + planeID + " is in-flight.");
+        }
+        return status;
+    }
+}
+
+- This code demonstrates encapsulation because the attributes model, planeSpeed, capacity and status are declared as private. This means other classes cannot directly access or change these values. Instead, they must use public getter and setter methods such as getPlaneSpeed(), setPlaneSpeed(), getStatus(), and setStatus(). This allows the Plane class to control how its internal data is accessed or modified. 
+- For example, validation could be added to setPlaneSpeed() to prevent a negative speed from being assigned.
 
 ---
 
@@ -108,13 +140,26 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **3.1.** List every place your code uses generics (e.g. `ArrayList<Actor>`, `Optional<Cell>`, `HashMap<String, Team>`). If you deliberately used none, explain why.
 
+- My project uses generics in the Airport and Route classes.
 
--------------------------------------------------
+In Route class:
+- private final ArrayList<Node> nodes;
+- nodes = new ArrayList<>();
 
+In Airport class: 
+- private ArrayList<Plane> planes;
+- planes = new ArrayList<>();
+- public ArrayList<Plane> getPlanes() {
+    return planes;
+}
+
+- In Airport, ArrayList<Plane> stores the planes participating in the simulation. Because CargoPlane and CommercialPlane inherit from Plane, objects of either subclass can be stored in this collection. 
+- In Route, ArrayList<Node> stores the ordered nodes that form a plane’s route. These generic collections provide compile-time type safety because Java prevents unrelated object types from being added to them.
 
 **3.2.** List every place your code handles exceptions (try/catch, throws, custom exception classes). What error is each protecting against?
 
 Custom exception class: 
+
     public class RunwayOccupiedException extends Exception {
         public RunwayOccupiedException(String message) {
             super(message);
@@ -122,6 +167,7 @@ Custom exception class:
     }
 
 try/catch block: 
+
     public boolean attemptRunwayEntry(Runway runway) {
         try {
                 runway.requestEntry(this);
@@ -133,6 +179,7 @@ try/catch block:
         }
 
 throws block: 
+
     public void requestEntry(Plane plane) throws RunwayOccupiedException {
 
         if (currentPlane != null && currentPlane != plane) {
@@ -152,15 +199,15 @@ throws block:
 
 Boolean method of try/catch block 
 
-public boolean attemptRunwayEntry(Runway runway) {
-    try {
-            runway.requestEntry(this);
-            return true;
-    } catch (RunwayOccupiedException exception) {
-            setStatus("WAITING");
-            return false;
+    public boolean attemptRunwayEntry(Runway runway) {
+        try {
+                runway.requestEntry(this);
+                return true;
+        } catch (RunwayOccupiedException exception) {
+                setStatus("WAITING");
+                return false;
+            }
         }
-    }
 
 ---
 
@@ -193,4 +240,47 @@ Logbook is also included in repository (inside worksheet folder)
 
 **5.3.** Paste one code snippet that you are especially proud of. Explain why it goes beyond what was done in class.
 
------------------------------------------------------
+- The code snippet i'm most proud of is the updateMovement() method in Plane class
+
+public void updateMovement(
+        Runway runway,
+        Node runwayEntranceNode,
+        Node runwayExitNode) {
+
+    if (route == null) {
+        return;
+    }
+
+    if (targetNode == null) {
+        int nextIndex = currentRouteIndex + 1;
+
+        if (nextIndex >= route.getNumberOfNodes()) {
+            return;
+        }
+
+        Node nextNode = route.getNode(nextIndex);
+
+        if (nextNode == runwayEntranceNode) {
+            boolean accepted = attemptRunwayEntry(runway);
+
+            if (!accepted) {
+                return;
+            }
+        }
+
+        if (!nextNode.reserve(this)) {
+            return;
+        }
+
+        targetNode = nextNode;
+    }
+
+    moveTowardsTarget();
+
+    if (currentNode == runwayExitNode) {
+        runway.exitRunway(this);
+    }
+}
+
+- I am especially proud of this one because it took me the longest time to figure out. This method allows each plane to move through an ordered collection of nodes instead of following one hard-coded straight line. Before moving, the plane checks whether the next node is available and reserves it. 
+- If another plane has already reserved the node, the current plane waits, which helps prevent planes from occupying the same location. The method also requests permission before entering the runway and releases the runway after reaching its exit. Rather than only creating a class hierarchy or moving one object in a straight direction, the system manages multiple planes that share limited airport resources and respond dynamically to the state of other objects.
