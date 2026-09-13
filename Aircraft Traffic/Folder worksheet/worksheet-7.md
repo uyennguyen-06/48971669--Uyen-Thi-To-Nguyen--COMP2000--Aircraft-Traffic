@@ -13,8 +13,8 @@
 **1.1.** Paste the first 10 lines of the output of `git log --graph --oneline --all` from your repository:
 
 ```
-![](gitlog.png)
-![](gitlog2.png)
+![](images/gitlog.png)
+![](images/gitlog2.png)
 
 
 ```
