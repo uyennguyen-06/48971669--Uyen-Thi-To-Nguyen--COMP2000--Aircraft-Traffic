@@ -6,6 +6,10 @@
 
 **GitHub repo URL:**
 
+My individual repository: https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic
+
+My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefaults
+
 ---
 
 ## 1. Version Control
