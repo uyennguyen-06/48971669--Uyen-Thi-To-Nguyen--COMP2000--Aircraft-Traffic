@@ -26,7 +26,9 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 
 **1.2.** Describe your workflow. Did you use branches? Pull requests?
 
-- I did a few pull request from my group's work at around week 1 to week 3 where we started building our base of the project, and also commit and push my code to my group's repository. 
+- I did a few pull request from my group's work at around week 1 to week 3 where we started building our base of the project, and also commit and push my code to my group's repository.
+- Our team used GitHub to collaborate and manage the project files. Each team member worked on their assigned classes locally, committed their changes, and pushed them to the shared repository. We regularly pulled the latest changes to keep our local copies updated. We worked on the main branch while also keep our separate branches updated. Before pushing, we communicated with each other to reduce merge conflicts.
+
 -------------------------------------------------
 
 **1.3.** Estimate the percentage of commits you contributed relative to the total in your repository.
@@ -112,35 +114,35 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **3.2.** List every place your code handles exceptions (try/catch, throws, custom exception classes). What error is each protecting against?
 
-- Custom exception class: 
-public class RunwayOccupiedException extends Exception {
-    public RunwayOccupiedException(String message) {
-        super(message);
-    }
-}
-
-- try/catch block: 
-public boolean attemptRunwayEntry(Runway runway) {
-    try {
-            runway.requestEntry(this);
-            return true;
-    } catch (RunwayOccupiedException exception) {
-            setStatus("WAITING");
-            return false;
+Custom exception class: 
+    public class RunwayOccupiedException extends Exception {
+        public RunwayOccupiedException(String message) {
+            super(message);
         }
     }
 
-- throws block: 
-public void requestEntry(Plane plane)
-        throws RunwayOccupiedException {
+try/catch block: 
+    public boolean attemptRunwayEntry(Runway runway) {
+        try {
+                runway.requestEntry(this);
+                return true;
+        } catch (RunwayOccupiedException exception) {
+                setStatus("WAITING");
+                return false;
+            }
+        }
 
-    if (currentPlane != null && currentPlane != plane) {
-        throw new RunwayOccupiedException(
-            "The runway is occupied by another plane."
-        );
-    }
-    currentPlane = plane;
-    }
+throws block: 
+    public void requestEntry(Plane plane)
+            throws RunwayOccupiedException {
+
+        if (currentPlane != null && currentPlane != plane) {
+            throw new RunwayOccupiedException(
+                "The runway is occupied by another plane."
+            );
+        }
+        currentPlane = plane;
+        }
 
 - This prevends the program to crash when there's more than a plane in the runway as runway can only allow one plane at a time. So the custom class will print out a message and then decide if it should let the plan enter the runway or not. 
 - If there are planes on the runway, the program will print out a "WAITING" message and plane will wait at the runway until the other plane has completely exited the path. 
