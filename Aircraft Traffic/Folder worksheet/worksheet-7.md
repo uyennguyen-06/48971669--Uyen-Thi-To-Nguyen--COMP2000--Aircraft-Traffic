@@ -19,17 +19,15 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 ```
 ![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog.png)
 
-
+--------------------------------------------------
 ![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog2.png)
-
 
 ```
 
 **1.2.** Describe your workflow. Did you use branches? Pull requests?
 
 - I did a few pull request from my group's work at around week 1 to week 3 where we started building our base of the project, and also commit and push my code to my group's repository. 
-
-
+-------------------------------------------------
 
 **1.3.** Estimate the percentage of commits you contributed relative to the total in your repository.
 
@@ -100,7 +98,7 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **2.4.** Paste one code snippet that demonstrates your use of polymorphism or encapsulation.  Include an explanation of _how_ this demonstrates polymorphim or encapsulation.  Give a reference to a provided reading that talks about this type of polymorphism or encapsulation.
 
-
+-----------------------------------------------------------
 
 ---
 
@@ -109,7 +107,7 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 **3.1.** List every place your code uses generics (e.g. `ArrayList<Actor>`, `Optional<Cell>`, `HashMap<String, Team>`). If you deliberately used none, explain why.
 
 
-
+-------------------------------------------------
 
 
 **3.2.** List every place your code handles exceptions (try/catch, throws, custom exception classes). What error is each protecting against?
@@ -173,12 +171,9 @@ public boolean attemptRunwayEntry(Runway runway) {
 
 Logbook is also included in repository (inside worksheet folder)
 
-
 **4.2.** Which week's activity taught you the most? What did you learn?
 
-- Week2 taught me the most because it helped me build a base knowledge for this unit and it also showed me how git commands is used in git bash which is a new thing to me at that time. 
-
-- And these has helped me throughout 7 weeks of this unit where i can learn how to do my work, and then share it with my teammates and then update my work by pulling their adjustments onto my repository. 
+- Week2 taught me the most because it helped me build a base knowledge for this unit and it also showed me how git commands is used in git bash which is a new thing to me at that time. And these has helped me throughout 7 weeks of this unit where i can learn how to do my work, and then share it with my teammates and then update my work by pulling their adjustments onto my repository. 
 
 ---
 
@@ -197,3 +192,4 @@ Logbook is also included in repository (inside worksheet folder)
 
 **5.3.** Paste one code snippet that you are especially proud of. Explain why it goes beyond what was done in class.
 
+-----------------------------------------------------
