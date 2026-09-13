@@ -13,8 +13,10 @@
 **1.1.** Paste the first 10 lines of the output of `git log --graph --oneline --all` from your repository:
 
 ```
-![](images/gitlog.png)
-![](images/gitlog2.png)
+![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog.png)
+
+
+![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog2.png)
 
 
 ```
