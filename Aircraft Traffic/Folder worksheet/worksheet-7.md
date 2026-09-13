@@ -16,14 +16,10 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 
 **1.1.** Paste the first 10 lines of the output of `git log --graph --oneline --all` from your repository:
 
-```
 ![First 5 lines](git-log.png)
+
 ![Last 5 lines](git-log-2.png)
 
---------------------------------------------------
-![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog2.png)
-
-```
 
 **1.2.** Describe your workflow. Did you use branches? Pull requests?
 
