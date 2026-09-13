@@ -17,7 +17,8 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 **1.1.** Paste the first 10 lines of the output of `git log --graph --oneline --all` from your repository:
 
 ```
-![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog.png)
+![First 5 lines](git-log.png)
+![Last 5 lines](git-log-2.png)
 
 --------------------------------------------------
 ![](https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Nguyen--COMP2000--Aircraft-Traffic/blob/db0ebbf182b7140b9565cebf638124258f9e251e/Aircraft%20Traffic/Folder%20worksheet/gitlog2.png)
@@ -242,12 +243,9 @@ Logbook is also included in repository (inside worksheet folder)
 
 - The code snippet i'm most proud of is the updateMovement() method in Plane class
 
-public void updateMovement(
-        Runway runway,
-        Node runwayEntranceNode,
-        Node runwayExitNode) {
-
-    if (route == null) {
+public void updateMovement(Runway runway, Node runwayEntranceNode, Node runwayExitNode) {
+        if (route == null) {
+        System.out.println(getPlaneID() + ": route is null");
         return;
     }
 
@@ -255,6 +253,8 @@ public void updateMovement(
         int nextIndex = currentRouteIndex + 1;
 
         if (nextIndex >= route.getNumberOfNodes()) {
+            System.out.println(
+                getPlaneID() + ": route finished at index " + currentRouteIndex);
             return;
         }
 
@@ -264,14 +264,13 @@ public void updateMovement(
             boolean accepted = attemptRunwayEntry(runway);
 
             if (!accepted) {
-                return;
+                return; // Stay at the previous node and wait
             }
         }
 
         if (!nextNode.reserve(this)) {
             return;
         }
-
         targetNode = nextNode;
     }
 
