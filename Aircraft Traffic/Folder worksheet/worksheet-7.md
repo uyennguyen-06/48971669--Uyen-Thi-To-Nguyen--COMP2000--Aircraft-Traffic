@@ -13,7 +13,8 @@
 **1.1.** Paste the first 10 lines of the output of `git log --graph --oneline --all` from your repository:
 
 ```
-
+![](gitlog.png)
+![](gitlog2.png)
 
 
 ```
@@ -107,12 +108,42 @@ AirportPath- Parent object: Runway, Taxiway- child objects
 
 **3.2.** List every place your code handles exceptions (try/catch, throws, custom exception classes). What error is each protecting against?
 
+- Custom exception class: 
+public class RunwayOccupiedException extends Exception {
+    public RunwayOccupiedException(String message) {
+        super(message);
+    }
+}
 
+- try/catch block: 
+public boolean attemptRunwayEntry(Runway runway) {
+    try {
+            runway.requestEntry(this);
+            return true;
+    } catch (RunwayOccupiedException exception) {
+            setStatus("WAITING");
+            return false;
+        }
+    }
 
+- throws block: 
+public void requestEntry(Plane plane)
+        throws RunwayOccupiedException {
+
+    if (currentPlane != null && currentPlane != plane) {
+        throw new RunwayOccupiedException(
+            "The runway is occupied by another plane."
+        );
+    }
+    currentPlane = plane;
+    }
+
+- This prevends the program to crash when there's more than a plane in the runway as runway can only allow one plane at a time. So the custom class will print out a message and then decide if it should let the plan enter the runway or not. 
+- If there are planes on the runway, the program will print out a "WAITING" message and plane will wait at the runway until the other plane has completely exited the path. 
+- If there are no planes on the runway, the moving plane will continue entering the runway without any obstacles. 
 
 
 **3.3.** Paste a code snippet showing either a generic class/method or a try/catch block.
-
 
 Boolean method of try/catch block 
 
@@ -125,8 +156,6 @@ public boolean attemptRunwayEntry(Runway runway) {
             return false;
         }
     }
-
-
 
 ---
 
