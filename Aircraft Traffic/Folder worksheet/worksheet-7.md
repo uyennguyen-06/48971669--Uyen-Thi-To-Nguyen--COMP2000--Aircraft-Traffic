@@ -39,43 +39,43 @@ My group repository: https://github.com/AmberTimber/COMP2000-Assignment-TheDefau
 
 **2.1.** List every class in your project and write 1–2 sentences describing its responsibility.
 
-Classes and responsibilities (alphabetical)
+- Classes and responsibilities (alphabetical)
 
-Airport: Build the base for airport by including all of its object in it. Used to allocate the position of each node to determine where the plane should move. 
+- Airport: Build the base for airport by including all of its object in it. Used to allocate the position of each node to determine where the plane should move. 
 
-AirportJPanel: Used to draw the panel of the airport, including runway, taxiway, planes, gates and paths. 
+- AirportJPanel: Used to draw the panel of the airport, including runway, taxiway, planes, gates and paths. 
 
-AirportPath: Is the parent class, determines every route in the airport, include pathID and length in meters. 
+- AirportPath: Is the parent class, determines every route in the airport, include pathID and length in meters. 
 
-AirwayGate: This class is responsible for the function of the gate where planes is parked. It tells what plane is currently at the gate and status of the gate: If it's closed or opened. 
+- AirwayGate: This class is responsible for the function of the gate where planes is parked. It tells what plane is currently at the gate and status of the gate: If it's closed or opened. 
 
-Bus: Responsible for buses to take passengers to the plane. Or deliver suitcases and package from terminal to the plane (Used for future project, not in this one).
+- Bus: Responsible for buses to take passengers to the plane. Or deliver suitcases and package from terminal to the plane (Used for future project, not in this one).
 
-BusLane: Shows the road  where bus is moving on (Used for future project, not this one).
+- BusLane: Shows the road  where bus is moving on (Used for future project, not this one).
 
-CargoPlane: Is a child object of Plane class, which is responsible for plane used to deliver packages or carry freight, not passengers. 
+- CargoPlane: Is a child object of Plane class, which is responsible for plane used to deliver packages or carry freight, not passengers. 
 
-CommercialPlane: Also a child object to Plane class. Used to differentiate from CargoPlane. This plane is used for transportation of passengers (carrying people). 
+- CommercialPlane: Also a child object to Plane class. Used to differentiate from CargoPlane. This plane is used for transportation of passengers (carrying people). 
 
-Main: Used to set up the whole program. 
+- Main: Used to set up the whole program. 
 
-Moveable: Set the plane position as it started to move. Used to set a variable in Plane class, allowing planes to move towards a target or change its target (changeTarget()/ moveTowards()).
+- Moveable: Set the plane position as it started to move. Used to set a variable in Plane class, allowing planes to move towards a target or change its target (changeTarget()/ moveTowards()).
 
-Node: Is used to set point position for the route. Made up by Vector2 to create the route of the planes. 
+- Node: Is used to set point position for the route. Made up by Vector2 to create the route of the planes. 
 
-Plane: Is the parent class, used to build the base of a plane and set its movement with speed, set its vector and movement targets and update plane movement. 
+- Plane: Is the parent class, used to build the base of a plane and set its movement with speed, set its vector and movement targets and update plane movement. 
 
-Position: Used to set X and Y position. 
+- Position: Used to set X and Y position. 
 
-Route: Contains an ArrayList of Node class, used to make up a whole route for moving planes. 
+- Route: Contains an ArrayList of Node class, used to make up a whole route for moving planes. 
 
-Runway: The actual road for plane to use during take off. Is a child to Airport Path. 
+- Runway: The actual road for plane to use during take off. Is a child to Airport Path. 
 
-RunwayOccupiedException: Used to run exception. 
+- RunwayOccupiedException: Used to run exception. 
 
-Taxiway: Is a child object to AirportPath, the path used to connect runway with regular paths to help plane move to runway. 
+- Taxiway: Is a child object to AirportPath, the path used to connect runway with regular paths to help plane move to runway. 
 
-Vector2:  Set up vector2 for Node class. Used to determine waypoint for object to move. 
+- Vector2:  Set up vector2 for Node class. Used to determine waypoint for object to move. 
 
 **2.2.** Identify any inheritance relationships. For each parent–child pair, list what the child inherits and what it overrides.
 
