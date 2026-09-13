@@ -23,7 +23,7 @@
 
 **1.2.** Describe your workflow. Did you use branches? Pull requests?
 
-
+- I did a few pull request from my group's work at around week 1 to week 3 where we started building our base of the project, and also commit and push my code to my group's repository. 
 
 
 
