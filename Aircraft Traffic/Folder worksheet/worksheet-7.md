@@ -133,8 +133,7 @@ try/catch block:
         }
 
 throws block: 
-    public void requestEntry(Plane plane)
-            throws RunwayOccupiedException {
+    public void requestEntry(Plane plane) throws RunwayOccupiedException {
 
         if (currentPlane != null && currentPlane != plane) {
             throw new RunwayOccupiedException(
