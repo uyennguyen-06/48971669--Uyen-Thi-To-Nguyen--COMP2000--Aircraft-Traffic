@@ -5,6 +5,7 @@ public abstract class Plane {
     private String status; 
     private final double emptyWeight;
     private final int capacity;
+    private AirwayGate gateAssigned = null;
     private Moveable planePosition = new Moveable();
     
     private Vector2 position;
@@ -83,6 +84,11 @@ public abstract class Plane {
         }
         return status;
     }
+
+    public AirwayGate getAssignedGate() {
+        return gateAssigned;
+    }
+
 
     public int getCapacity(){
         return capacity;

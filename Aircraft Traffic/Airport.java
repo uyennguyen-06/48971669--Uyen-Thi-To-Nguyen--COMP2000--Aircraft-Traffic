@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Airport {
+    private ArrayList<Node> nodes = new ArrayList<>();
     private Runway runway;
     private Node gateNode;
     private Node gateNode2;
@@ -31,32 +32,38 @@ public class Airport {
     private ArrayList<Plane> planes;
 
     public Airport() {
-        planes = new ArrayList<>();
+        planes = new ArrayList<>();        
         createNodes();
         createRoutes();
         runway = new Runway ("Runway 1", 1000.0, 1, 1, null, "Available");
     }
 
+    public ArrayList<Node> getNodes() {
+        return nodes;
+    }
+
+    private Node createNode(String name, int x, int y) {
+        Node node = new Node(name, new Vector2(x, y));
+        nodes.add(node);
+        return node;
+    }
+
     private void createNodes() {
-        gateNode = new Node("Gate 1", new Vector2(35, 580));
-        gateNode2 = new Node("Gate 2", new Vector2(200, 580));
-        gateNode3 = new Node("Gate 3", new Vector2(390, 580));
-        gateNode4 = new Node("Gate 4", new Vector2(580, 580));
-        gateNode5 = new Node("Gate 5", new Vector2(760, 580));
+        gateNode = createNode("Gate 1", 35, 580);
+        gateNode2 = createNode("Gate 2", 200, 580);
 
-        lowerPathNode = new Node("Lower Path", new Vector2(35, 350));
-        lowerPathNode2 = new Node("Lower Path 2", new Vector2(413, 350));
-        lowerPathNode3 = new Node("Lower Path 3", new Vector2(390, 350)); 
-    
-        upperPathNode = new Node("Upper Path", new Vector2(35, 120));
-        upperPathNode2 = new Node("Upper Path 2", new Vector2());
-        upperPathNode3 = new Node("Upper Path 2", new Vector2());
-        upperPathNode4 = new Node("Upper Path 2", new Vector2());
+        lowerPathNode = createNode("Lower Path 1", 35, 350);
+        lowerPathNode2 = createNode("Lower Path 2", 200, 350);
 
-        taxiwayNode = new Node("Taxiway 1", new Vector2(35, 280));
-        runwayNode = new Node("Runway 1", new Vector2(35, 90));
-        runwayEntrance = new Node("Runway Entrance", new Vector2(35, 52));
-        runwayExit = new Node("Runway Exit", new Vector2(850, 52));
+        taxiwayNode = createNode("Taxiway 1", 35, 280);
+
+        upperPathNode = createNode("Upper Path 1", 35, 150);
+
+        runwayEntrance =
+            createNode("Runway Entrance", 35, 70);
+
+        runwayExit =
+            createNode("Runway Exit", 790, 70);
     }
 
     public void createRoutes() {
