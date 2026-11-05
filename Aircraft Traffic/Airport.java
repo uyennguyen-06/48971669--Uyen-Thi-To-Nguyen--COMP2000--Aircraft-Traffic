@@ -10,6 +10,9 @@ public class Airport {
     private Node gateNode5;
 
     private Node taxiwayNode;
+    private Node taxiwayNode2;
+    private Node taxiwayNode3;
+
     private Node runwayNode;
     private Node lowerPathNode;
     private Node lowerPathNode2;
@@ -32,9 +35,12 @@ public class Airport {
     private ArrayList<Plane> planes;
 
     public Airport() {
-        planes = new ArrayList<>();        
+        planes = new ArrayList<>(); 
+               
         createNodes();
         createRoutes();
+        connectNodes();
+
         runway = new Runway ("Runway 1", 1000.0, 1, 1, null, "Available");
     }
 
@@ -49,13 +55,20 @@ public class Airport {
     }
 
     private void createNodes() {
-        gateNode = createNode("Gate 1", 35, 580);
-        gateNode2 = createNode("Gate 2", 200, 580);
+        gateNode = createNode("Gate 1", 35, 600);
+        gateNode2 = createNode("Gate 2", 215, 600);
+        gateNode3 = createNode("Gate 3", 405, 600);
+        gateNode4 = createNode("Gate 4", 595, 600);
+        gateNode5 = createNode("Gate 5", 775, 600);
+        
 
         lowerPathNode = createNode("Lower Path 1", 35, 350);
-        lowerPathNode2 = createNode("Lower Path 2", 200, 350);
+        lowerPathNode2 = createNode("Lower Path 2", 415, 350);
+        lowerPathNode3 = createNode("Lower Path 3", 775, 350);
 
         taxiwayNode = createNode("Taxiway 1", 35, 280);
+        taxiwayNode2 = createNode("Taxiway 2", 415, 280);
+        taxiwayNode3 = createNode("Taxiway 3", 775, 280);
 
         upperPathNode = createNode("Upper Path 1", 35, 150);
 
@@ -64,6 +77,17 @@ public class Airport {
 
         runwayExit =
             createNode("Runway Exit", 790, 70);
+    }
+
+    private void connectNodes(){
+        gateNode.connectTo(lowerPathNode);
+        lowerPathNode.connectTo(taxiwayNode);
+        taxiwayNode.connectTo(upperPathNode);
+        upperPathNode.connectTo(runwayEntrance);
+        runwayEntrance.connectTo(runwayExit);
+
+        gateNode2.connectTo(lowerPathNode2);
+        lowerPathNode2.connectTo(taxiwayNode);
     }
 
     public void createRoutes() {

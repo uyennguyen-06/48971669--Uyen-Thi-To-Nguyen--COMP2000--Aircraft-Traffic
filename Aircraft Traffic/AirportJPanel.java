@@ -55,6 +55,7 @@ public class AirportJPanel extends JPanel {
         drawGates(g);
         drawTerminals(g);
         drawAirportPath(g);
+        drawNodes(g);
         
         for (Plane plane : airport.getPlanes()) {
             Vector2 position = plane.getPosition();
@@ -128,6 +129,28 @@ public class AirportJPanel extends JPanel {
     // Draw the outline
     g.setColor(Color.BLACK);
     g.drawOval(x, y, diameter, diameter);
-}
+    }
+
+    private void drawNodes(Graphics2D g) {
+        int diameter = 10;
+
+        for (Node node : airport.getNodes()) {
+            Vector2 position = node.getPosition();
+
+            int x = position.getXPos();
+            int y = position.getYPos();
+
+            g.setColor(Color.GREEN);
+            g.fillOval(
+                x - diameter / 2,
+                y - diameter / 2,
+                diameter,
+                diameter
+            );
+
+            g.setColor(Color.BLACK);
+            g.drawString(node.getNodeID(), x + 8, y - 8);
+        }
+    }
 
 }
