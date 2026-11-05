@@ -14,6 +14,7 @@ public class Airport {
     private Node taxiwayNode3;
 
     private Node runwayNode;
+
     private Node lowerPathNode;
     private Node lowerPathNode2;
     private Node lowerPathNode3;
@@ -66,17 +67,18 @@ public class Airport {
         lowerPathNode2 = createNode("Lower Path 2", 415, 350);
         lowerPathNode3 = createNode("Lower Path 3", 775, 350);
 
-        taxiwayNode = createNode("Taxiway 1", 35, 280);
-        taxiwayNode2 = createNode("Taxiway 2", 415, 280);
-        taxiwayNode3 = createNode("Taxiway 3", 775, 280);
+        taxiwayNode = createNode("Taxiway 1", 35, 270);
+        taxiwayNode2 = createNode("Taxiway 2", 415, 270);
+        taxiwayNode3 = createNode("Taxiway 3", 775, 270);
 
-        upperPathNode = createNode("Upper Path 1", 35, 150);
+        upperPathNode = createNode("Upper Path 1", 35, 170);
+        upperPathNode2 = createNode("Upper Path 2", 275, 170);
+        upperPathNode3 = createNode("Upper Path 3", 545, 170);
+        upperPathNode4 = createNode("Upper Path 4", 775, 170);
 
-        runwayEntrance =
-            createNode("Runway Entrance", 35, 70);
+        runwayEntrance = createNode("Runway Entrance", 35, 55);
 
-        runwayExit =
-            createNode("Runway Exit", 790, 70);
+        runwayExit = createNode("Runway Exit", 850, 55);
     }
 
     private void connectNodes(){
