@@ -22,11 +22,25 @@ public class Main{
             
 
             CargoPlane cargoPlane = new CargoPlane("CP001", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
-            cargoPlane.setRoute(airport.getRouteGate1());
+            Route cargoRoute = airport.findRoute(
+                airport.getGateNode1(),
+                airport.getRunwayExit()
+            );
+
+            if (cargoRoute != null) {
+                cargoPlane.setRoute(cargoRoute);
+            }
             airport.addPlane(cargoPlane);
 
             CargoPlane passengerPlane = new CargoPlane("CP002", "Qantas Freight",  "Boarding", 900.0, 18000.0, 18000.0, 14000.0, 700);
-            passengerPlane.setRoute(airport.getRouteGate2());
+            Route passengerRoute = airport.findRoute(
+                airport.getGateNode2(),
+                airport.getRunwayExit()
+            );
+
+            if (passengerRoute != null) {
+                passengerPlane.setRoute(passengerRoute);
+            }
             airport.addPlane(passengerPlane);
         });
     }

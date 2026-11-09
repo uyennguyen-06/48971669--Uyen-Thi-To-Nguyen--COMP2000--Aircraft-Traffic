@@ -20,7 +20,7 @@ public class Node {
         if (!otherNode.neighbours.contains(this)) {
             otherNode.neighbours.add(this);
         }
-    }
+}
 
     public ArrayList<Node> getNeighbours() {
         return neighbours;
