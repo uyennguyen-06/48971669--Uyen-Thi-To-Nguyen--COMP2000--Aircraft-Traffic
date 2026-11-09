@@ -40,6 +40,7 @@ Don't forget to submit a pdf file which shows a diagram of your pattern implemen
 
 LAMBDA:
 - In Main.java
+
     SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Airport Simulation");
 
@@ -50,6 +51,7 @@ LAMBDA:
     });
 
 - In AirportJPanel.java
+
     Timer timer = new Timer(30, event -> {
         for (Plane plane : airport.getPlanes()) {
             plane.updateMovement(
@@ -58,12 +60,12 @@ LAMBDA:
                 airport.getRunwayExit()
             );
         }
-
         repaint();
     });
 
 STREAMS API 
 - In AirportJPanel.java
+
     List<Plane> boardPlanes = airport.getPlanes()
         .stream()
         .filter(plane -> !plane.isFinished())
@@ -79,17 +81,19 @@ STREAMS API
 
 LAMBDA:
 In Main.java
+
     SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Airport Simulation");
-
                 frame.setDefaultCloseOperation(
                     JFrame.EXIT_ON_CLOSE
                 );
     .... <the rest of the code>
     });
+
 - This is better suited because Swing needs yo provide a piece of code to run later when an event happens. The "for" loop cannot do that because it only repeats codes. This lambda represents an action that Swing can store and execute at the correct time. 
 
 In AirportJPanel.java
+
     Timer timer = new Timer(30, event -> {
         for (Plane plane : airport.getPlanes()) {
             plane.updateMovement(
@@ -98,13 +102,14 @@ In AirportJPanel.java
                 airport.getRunwayExit()
             );
         }
-
         repaint();
     });
+
 - A normal "for" loop could repeat operations, but it could not act as a callback for these events. This code tell java to run the code whenver the timer fires. A loop alone cannot listen for timer events and the lambda is the timer's event handler. A lambda also make the code shorter and easier to read. 
 
 STREAMS API:
 In AirportJPanel.java
+
     List<Plane> boardPlanes = airport.getPlanes()
         .stream()
         .filter(plane -> !plane.isFinished())
@@ -114,6 +119,7 @@ In AirportJPanel.java
                     plane2.getPlaneID()
                 )
         )
+
 - This code processes the planes like:
 .stream(): create a stream from plane list
 .filter(): removes the plane that got out of the runway
