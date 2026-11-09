@@ -1,7 +1,7 @@
 # COMP2000 Worksheet 2 — Final Submission
 
-**Student name:**
-
+**Student name:*Thi To Uyen Nguyen*
+S
 **GitHub repo URL:** (your own fork of your team's repository, not your team's URL)
 
 ---
