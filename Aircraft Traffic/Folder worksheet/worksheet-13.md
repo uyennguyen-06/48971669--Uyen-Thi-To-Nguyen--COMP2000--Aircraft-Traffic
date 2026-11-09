@@ -94,16 +94,16 @@ In Main.java
 
 In AirportJPanel.java
 
-    Timer timer = new Timer(30, event -> {
-        for (Plane plane : airport.getPlanes()) {
-            plane.updateMovement(
-                airport.getRunway(),
-                airport.getRunwayEntrance(),
-                airport.getRunwayExit()
-            );
-        }
-        repaint();
-    });
+Timer timer = new Timer(30, event -> {
+    for (Plane plane : airport.getPlanes()) {
+         plane.updateMovement(
+            airport.getRunway(),
+            airport.getRunwayEntrance(),
+            airport.getRunwayExit()
+        );
+    }
+    repaint();
+});
 
 - A normal "for" loop could repeat operations, but it could not act as a callback for these events. This code tell java to run the code whenver the timer fires. A loop alone cannot listen for timer events and the lambda is the timer's event handler. A lambda also make the code shorter and easier to read. 
 
