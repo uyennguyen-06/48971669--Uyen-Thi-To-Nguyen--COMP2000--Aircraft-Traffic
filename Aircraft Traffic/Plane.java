@@ -153,7 +153,7 @@ public abstract class Plane {
         + differenceY * differenceY
     );
 
-    double movementSpeed = 5.0;
+    double movementSpeed = 4.0;
 
     if (distance <= movementSpeed) {
         // Snap exactly onto the node

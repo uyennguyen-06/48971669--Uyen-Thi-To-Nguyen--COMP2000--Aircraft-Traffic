@@ -79,11 +79,6 @@ public class Airport {
         ArrayList<Node> neighbours =
             new ArrayList<>(currentNode.getNeighbours());
 
-        /*// Randomise choices when leaving a gate
-        if (isGateNode(currentNode)) {
-            Collections.shuffle(neighbours);
-        }*/
-
         for (Node neighbour : neighbours) {
             if (!previousNode.containsKey(neighbour)) {
                 previousNode.put(neighbour, currentNode);

@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.util.List;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -234,10 +236,21 @@ public class AirportJPanel extends JPanel {
     }
 
     private void drawFlightBoard(Graphics2D g) {
-        int boardWidth = 330;
+        int boardWidth = 370;
         int rowHeight = 20;
 
-        int numberOfPlanes = airport.getPlanes().size();
+        List<Plane> boardPlanes = airport.getPlanes()
+        .stream()
+        .filter(plane -> !plane.isFinished())
+        .sorted(
+            (plane1, plane2) ->
+                plane1.getPlaneID().compareTo(
+                    plane2.getPlaneID()
+                )
+        )
+        .toList();
+
+        int numberOfPlanes = boardPlanes.size();
 
         int boardHeight = Math.max(
             80,
@@ -282,9 +295,9 @@ public class AirportJPanel extends JPanel {
 
         // Column locations
         int flightX = boardX + 10;
-        int typeX = boardX + 80;
-        int statusX = boardX + 155;
-        int gateX = boardX + 250;
+        int typeX = boardX + 85;
+        int statusX = boardX + 200;
+        int gateX = boardX + 300;
 
         // Column headings
         g.setColor(Color.YELLOW);
@@ -296,13 +309,13 @@ public class AirportJPanel extends JPanel {
 
         int rowY = boardY + 58;
 
-        for (Plane plane : airport.getPlanes()) {
+        for (Plane plane : boardPlanes) {
             String planeType;
 
             if (plane instanceof CargoPlane) {
                 planeType = "CARGO";
             } else if (plane instanceof CommercialPlane) {
-                planeType = "PAX";
+                planeType = "COMMERCIAL";
             } else {
                 planeType = "PLANE";
             }
