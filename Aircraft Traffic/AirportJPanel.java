@@ -36,7 +36,7 @@ public class AirportJPanel extends JPanel {
                 airport.getRunwayExit()
             );
         }
-        
+
         airport.getPlanes().removeIf(plane -> plane.isFinished());
 
         repaint();
@@ -127,15 +127,15 @@ public class AirportJPanel extends JPanel {
     }
 
     private void drawPlane(Graphics2D g, int x, int y) {
-    int diameter = 30;
+        int diameter = 25;
 
-    // Fill the circle
-    g.setColor(Color.WHITE);
-    g.fillOval(x, y, diameter, diameter);
+        // Fill the circle
+        g.setColor(Color.WHITE);
+        g.fillOval(x, y, diameter, diameter);
 
-    // Draw the outline
-    g.setColor(Color.BLACK);
-    g.drawOval(x, y, diameter, diameter);
+        // Draw the outline
+        g.setColor(Color.BLACK);
+        g.drawOval(x, y, diameter, diameter);
     }
 
     private void drawNodes(Graphics2D g) {

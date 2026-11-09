@@ -22,6 +22,7 @@ public class Airport {
     private Node taxiwayNode3;
 
     private Node runwayNode;
+    private Node runwayNode2;
 
     //Lower path nodes
     private Node lowerPathNode;
@@ -36,7 +37,7 @@ public class Airport {
 
     private Node runwayEntrance;
     private Node runwayExit;
-    //private Node holdingNode;
+    
 
     private ArrayList<Plane> planes;
 
@@ -60,106 +61,194 @@ public class Airport {
     }
 
     public Route findRoute(Node startingNode, Node destinationNode) {
-        Queue<Node> nodesToCheck = new ArrayDeque<>();
-         Map<Node, Node> previousNode = new HashMap<>();
 
-        nodesToCheck.add(startingNode);
-        previousNode.put(startingNode, null);
+    Queue<Node> nodesToCheck = new ArrayDeque<>();
+    Map<Node, Node> previousNode = new HashMap<>();
 
-        while (!nodesToCheck.isEmpty()) {
-            Node currentNode = nodesToCheck.remove();
+    nodesToCheck.add(startingNode);
+    previousNode.put(startingNode, null);
 
-            // Destination has been found
-            if (currentNode == destinationNode) {
-                break;
+    while (!nodesToCheck.isEmpty()) {
+        Node currentNode = nodesToCheck.remove();
+
+        // Destination has been found
+        if (currentNode == destinationNode) {
+            break;
+        }
+
+        ArrayList<Node> neighbours =
+            new ArrayList<>(currentNode.getNeighbours());
+
+        /*// Randomise choices when leaving a gate
+        if (isGateNode(currentNode)) {
+            Collections.shuffle(neighbours);
+        }*/
+
+        for (Node neighbour : neighbours) {
+            if (!previousNode.containsKey(neighbour)) {
+                previousNode.put(neighbour, currentNode);
+                nodesToCheck.add(neighbour);
+            }
+        }
+
+        for (Node neighbour : neighbours) {
+            // Do not use a gate as a shortcut
+            if (isGateNode(neighbour)
+                    && neighbour != destinationNode) {
+                continue;
             }
 
-            // Examine every connected node
-            for (Node neighbour : currentNode.getNeighbours()) {
-                // If this node has not been checked before
-                if (!previousNode.containsKey(neighbour)) {
-                    previousNode.put(neighbour, currentNode);
-                    nodesToCheck.add(neighbour);
-                }
+            if (!previousNode.containsKey(neighbour)) {
+                previousNode.put(neighbour, currentNode);
+                nodesToCheck.add(neighbour);
             }
-        }
+    }
+}
 
-        // BFS could not reach the destination
-        if (!previousNode.containsKey(destinationNode)) {
-            System.out.println(
-                "No route found from "
-                + startingNode.getNodeID()
-                + " to "
-                + destinationNode.getNodeID()
-            );
+    // BFS could not reach the destination
+    if (!previousNode.containsKey(destinationNode)) {
+        System.out.println(
+            "No route found from "
+            + startingNode.getNodeID()
+            + " to "
+            + destinationNode.getNodeID()
+        );
 
-            return null;
-        }
+        return null;
+    }
 
-        // Rebuild the path by working backwards
-        ArrayList<Node> path = new ArrayList<>();
+    // Rebuild the path backwards
+    ArrayList<Node> path = new ArrayList<>();
 
-        Node currentNode = destinationNode;
+    Node currentNode = destinationNode;
 
-        while (currentNode != null) {
-            path.add(currentNode);
-            currentNode = previousNode.get(currentNode);
-        }
+    while (currentNode != null) {
+        path.add(currentNode);
+        currentNode = previousNode.get(currentNode);
+    }
 
-        // It is currently destination → starting node,
-        // so reverse it
-        Collections.reverse(path);
+    // Change destination → start into start → destination
+    Collections.reverse(path);
 
-        Route route = new Route();
+    Route route = new Route();
 
-        for (Node node : path) {
-            route.addNode(node);
-        }
+    for (Node node : path) {
+        route.addNode(node);
+    }
 
-        return route;
+    return route;
+}
+
+    private boolean isGateNode(Node node) {
+        return node == gateNode
+        || node == gateNode2
+        || node == gateNode3
+        || node == gateNode4
+        || node == gateNode5;
+    }
+
+    public Route findRandomDepartureRoute(
+        Node gateNode,
+        Node destinationNode) {
+
+    ArrayList<Node> lowerPaths = new ArrayList<>();
+
+    lowerPaths.add(lowerPathNode);
+    lowerPaths.add(lowerPathNode2);
+    lowerPaths.add(lowerPathNode3);
+
+    Collections.shuffle(lowerPaths);
+
+    // After shuffling, index 0 is random
+    Node selectedLowerPath = lowerPaths.get(0);
+
+    System.out.println(
+        gateNode.getNodeID()
+        + " selected "
+        + selectedLowerPath.getNodeID()
+    );
+
+    // Find the remaining route from the selected path
+    Route remainingRoute =
+        findRoute(selectedLowerPath, destinationNode);
+
+    if (remainingRoute == null) {
+        return null;
+    }
+
+    Route completeRoute = new Route();
+
+    // First: gate
+    completeRoute.addNode(gateNode);
+
+    // remainingRoute already begins with selectedLowerPath
+    for (int i = 0;
+         i < remainingRoute.getNumberOfNodes();
+         i++) {
+
+        completeRoute.addNode(
+            remainingRoute.getNode(i)
+        );
+    }
+
+    return completeRoute;
 }
 
     private void createNodes() {
-        gateNode = createNode("Gate 1", 35, 600);
-        gateNode2 = createNode("Gate 2", 215, 600);
-        gateNode3 = createNode("Gate 3", 405, 600);
-        gateNode4 = createNode("Gate 4", 595, 600);
-        gateNode5 = createNode("Gate 5", 775, 600);
+        gateNode = createNode("Gate 1", 38, 600);
+        gateNode2 = createNode("Gate 2", 218, 600);
+        gateNode3 = createNode("Gate 3", 408, 600);
+        gateNode4 = createNode("Gate 4", 598, 600);
+        gateNode5 = createNode("Gate 5", 778, 600);
         
 
-        lowerPathNode = createNode("Lower Path 1", 35, 350);
-        lowerPathNode2 = createNode("Lower Path 2", 415, 350);
-        lowerPathNode3 = createNode("Lower Path 3", 775, 350);
+        lowerPathNode = createNode("Lower Path 1", 35, 315);
+        lowerPathNode2 = createNode("Lower Path 2", 415, 315);
+        lowerPathNode3 = createNode("Lower Path 3", 775, 315);
 
-        taxiwayNode = createNode("Taxiway 1", 35, 270);
-        taxiwayNode2 = createNode("Taxiway 2", 415, 270);
-        taxiwayNode3 = createNode("Taxiway 3", 775, 270);
+        taxiwayNode = createNode("Taxiway 1", 35, 240);
+        taxiwayNode2 = createNode("Taxiway 2", 415, 240);
+        taxiwayNode3 = createNode("Taxiway 3", 775, 240);
 
-        upperPathNode = createNode("Upper Path 1", 35, 170);
-        upperPathNode2 = createNode("Upper Path 2", 275, 170);
-        upperPathNode3 = createNode("Upper Path 3", 545, 170);
-        upperPathNode4 = createNode("Upper Path 4", 775, 170);
+        upperPathNode = createNode("Upper Path 1", 35, 150);
+        upperPathNode2 = createNode("Upper Path 2", 275, 150);
+        upperPathNode3 = createNode("Upper Path 3", 545, 150);
+        upperPathNode4 = createNode("Upper Path 4", 775, 150);
 
         runwayEntrance = createNode("Runway Entrance", 35, 55);
+
+        runwayNode = createNode("Runway Node", 275, 55);
+        runwayNode2 = createNode("Runway Node", 545, 55);
 
         runwayExit = createNode("Runway Exit", 850, 55);
     }
 
     private void connectNodes(){
+        //Gate notes to lower paths
         gateNode.connectTo(lowerPathNode);
+        gateNode.connectTo(lowerPathNode2);
+        gateNode.connectTo(lowerPathNode3);
+
         gateNode2.connectTo(lowerPathNode);
+        gateNode2.connectTo(lowerPathNode2);
+        gateNode2.connectTo(lowerPathNode3);
+
+        gateNode3.connectTo(lowerPathNode);
         gateNode3.connectTo(lowerPathNode2);
+        gateNode3.connectTo(lowerPathNode3);
+
+        gateNode4.connectTo(lowerPathNode);
+        gateNode4.connectTo(lowerPathNode2);
         gateNode4.connectTo(lowerPathNode3);
+
+        gateNode5.connectTo(lowerPathNode);
+        gateNode5.connectTo(lowerPathNode2);
         gateNode5.connectTo(lowerPathNode3);
 
         // Lower paths to taxiway
         lowerPathNode.connectTo(taxiwayNode);
         lowerPathNode2.connectTo(taxiwayNode2);
         lowerPathNode3.connectTo(taxiwayNode3);
-
-        // Taxiway is connected across the airport
-        taxiwayNode.connectTo(taxiwayNode2);
-        taxiwayNode2.connectTo(taxiwayNode3);
 
         // Taxiway to upper paths
         taxiwayNode.connectTo(upperPathNode);
@@ -173,8 +262,13 @@ public class Airport {
 
         // Upper paths to runway
         upperPathNode.connectTo(runwayEntrance);
-        upperPathNode2.connectTo(runwayEntrance);
-        upperPathNode3.connectTo(runwayExit);
+        runwayNode.connectTo(runwayExit);
+
+        upperPathNode2.connectTo(runwayNode);
+
+        upperPathNode3.connectTo(runwayNode2);
+        runwayNode2.connectTo(runwayExit);
+
         upperPathNode4.connectTo(runwayExit);
 
         // Runway movement in both directions
