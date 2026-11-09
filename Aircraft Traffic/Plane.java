@@ -13,6 +13,7 @@ public abstract class Plane {
     private int currentRouteIndex = 0;
     private Node currentNode;
     private Node targetNode;
+    private boolean finished = false;
 
     public Plane(String planeID, String model, double planeSpeed, String status, double emptyWeight,  int capacity){
         this.planeID = planeID;
@@ -74,6 +75,10 @@ public abstract class Plane {
         return planePosition.getReachedTarget();
     }
 
+    public boolean isFinished() {
+        return finished;
+    }
+
     public String getStatus(){
         if(status.equals("GOUNDED")){
             System.out.println("Status: " + planeID + " is grounded.");
@@ -88,7 +93,6 @@ public abstract class Plane {
     public AirwayGate getAssignedGate() {
         return gateAssigned;
     }
-
 
     public int getCapacity(){
         return capacity;
@@ -217,6 +221,16 @@ public abstract class Plane {
     }
 
     moveTowardsTarget();
+
+    if (currentNode == runwayExitNode) {
+        runway.exitRunway(this);
+
+        // Release the final node
+        currentNode.release(this);
+
+        setStatus("DEPARTED");
+        finished = true;
+}
 
     if (currentNode == runwayExitNode) {
         runway.exitRunway(this);

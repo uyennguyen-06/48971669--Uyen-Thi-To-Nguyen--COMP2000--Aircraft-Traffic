@@ -38,11 +38,6 @@ public class Airport {
     private Node runwayExit;
     //private Node holdingNode;
 
-    private Route departureRoute;
-    private Route arrivalRoute;
-    private Route routeGate1;
-    private Route routeGate2;
-
     private ArrayList<Plane> planes;
 
     public Airport() {
@@ -186,6 +181,7 @@ public class Airport {
         runwayEntrance.connectTo(runwayExit);
     }
 
+
     public Node getGateNode1() {
     return gateNode;
     }
@@ -204,14 +200,6 @@ public class Airport {
 
     public Node getGateNode5() {
         return gateNode5;
-    }
-
-    public Route getDepartureRoute() {
-        return departureRoute;
-    }
-
-    public Route getArrivalRoute() {
-        return arrivalRoute;
     }
 
     public void addPlane(Plane plane) {
