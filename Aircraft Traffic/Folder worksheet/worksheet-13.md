@@ -80,7 +80,7 @@ STREAMS API
 **2.2.** For the most sophisticated use, paste the code and explain: what does it do, and why was a stream/lambda better than a loop?
 
 LAMBDA:
-In Main.java
+- In Main.java
 
     SwingUtilities.invokeLater(() -> {
                 JFrame frame = new JFrame("Airport Simulation");
@@ -92,23 +92,23 @@ In Main.java
 
 - This is better suited because Swing needs yo provide a piece of code to run later when an event happens. The "for" loop cannot do that because it only repeats codes. This lambda represents an action that Swing can store and execute at the correct time. 
 
-In AirportJPanel.java
+- In AirportJPanel.java
 
-Timer timer = new Timer(30, event -> {
-    for (Plane plane : airport.getPlanes()) {
-         plane.updateMovement(
-            airport.getRunway(),
-            airport.getRunwayEntrance(),
-            airport.getRunwayExit()
-        );
-    }
-    repaint();
-});
+    Timer timer = new Timer(30, event -> {
+        for (Plane plane : airport.getPlanes()) {
+            plane.updateMovement(
+                airport.getRunway(),
+                airport.getRunwayEntrance(),
+                airport.getRunwayExit()
+            );
+        }
+        repaint();
+    });
 
 - A normal "for" loop could repeat operations, but it could not act as a callback for these events. This code tell java to run the code whenver the timer fires. A loop alone cannot listen for timer events and the lambda is the timer's event handler. A lambda also make the code shorter and easier to read. 
 
 STREAMS API:
-In AirportJPanel.java
+- In AirportJPanel.java
 
     List<Plane> boardPlanes = airport.getPlanes()
         .stream()
@@ -125,6 +125,7 @@ In AirportJPanel.java
 .filter(): removes the plane that got out of the runway
 .sorted(): arranges the remaining planes alphabetically by plane ID
 .toList(): collects the results into a new list
+
 - The stream filters out planes that have finished their routes and sorts the remaining planes by their plane IDs. This approach expresses each processing step and creates a new result list without changing the airport’s original list. Lambda expressions provide the filtering condition and comparison logic used by the stream.
 
 
