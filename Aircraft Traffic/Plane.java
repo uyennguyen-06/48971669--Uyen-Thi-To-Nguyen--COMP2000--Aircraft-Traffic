@@ -19,7 +19,7 @@ public abstract class Plane {
         this.planeID = planeID;
         setModel(model);
         setPlaneSpeed(planeSpeed);
-        this.status = "GOUNDED"; // Default status of plane
+        this.status = status;
         this.emptyWeight = emptyWeight;
         this.capacity = capacity;
     }
@@ -237,7 +237,6 @@ public abstract class Plane {
     }
 }
 
-
     public boolean attemptRunwayEntry(Runway runway) {
     try {
             runway.requestEntry(this);
@@ -246,6 +245,32 @@ public abstract class Plane {
             setStatus("WAITING");
             return false;
         }
+    }
+
+    public String getCurrentTargetName() {
+        if (targetNode == null) {
+            return "Waiting";
+        }
+
+        return targetNode.getNodeID();
+    }
+
+    public String getFinalDestinationName() {
+        if (route == null || route.getNumberOfNodes() == 0) {
+            return "None";
+        }
+
+        Node finalNode =
+            route.getNode(route.getNumberOfNodes() - 1);
+
+        return finalNode.getNodeID();
+    }
+
+    public String getCurrentNodeName() {
+        if (currentNode == null) {
+            return "-";
+        }
+        return currentNode.getNodeID();
     }
    
 }

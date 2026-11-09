@@ -1,6 +1,7 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -63,19 +64,20 @@ public class AirportJPanel extends JPanel {
         drawTerminals(g);
         drawAirportPath(g);
         drawNodes(g);
+        drawFlightBoard(g);
         
         for (Plane plane : airport.getPlanes()) {
             Vector2 position = plane.getPosition();
 
             if (position != null) {
-                drawPlane(
-                    g,
-                    position.getXPos(),
-                    position.getYPos()
-                );
+                int x = position.getXPos();
+                int y = position.getYPos();
+
+                drawPlane(g, x, y);
+                drawPlaneInformation(g, plane, x, y);
             }
         }
-    }
+}
 
     private void drawRunways(Graphics2D g){
         g.setColor(Color.BLACK);
@@ -147,7 +149,7 @@ public class AirportJPanel extends JPanel {
             int x = position.getXPos();
             int y = position.getYPos();
 
-            g.setColor(Color.GREEN);
+            g.setColor(Color.PINK);
             g.fillOval(
                 x - diameter / 2,
                 y - diameter / 2,
@@ -156,7 +158,190 @@ public class AirportJPanel extends JPanel {
             );
 
             g.setColor(Color.BLACK);
-            g.drawString(node.getNodeID(), x + 8, y - 8);
+            //g.drawString(node.getNodeID(), x + 8, y - 8);
+        }
+    }
+
+    private void drawPlaneInformation(
+        Graphics2D g,
+        Plane plane,
+        int planeX,
+        int planeY) {
+
+        int boardX = planeX + 20;
+        int boardY = planeY - 45;
+
+        int boardWidth = 190;
+        int boardHeight = 105;
+
+        // Transparent white background
+        g.setColor(new Color(255, 255, 255, 210));
+
+        // Board outline
+        g.setColor(Color.BLACK);
+
+        String planeType;
+
+        if (plane instanceof CargoPlane) {
+            planeType = "Cargo Plane";
+        } else if (plane instanceof CommercialPlane) {
+            planeType = "Commercial Plane";
+        } else {
+            planeType = "Plane";
+        }
+
+        int textX = boardX + 8;
+        int textY = boardY + 16;
+        int lineSpacing = 15;
+
+        g.drawString(
+            planeType + ": " + plane.getPlaneID(),
+            textX,
+            textY
+        );
+
+        g.drawString(
+            "Model: " + plane.getModel(),
+            textX,
+            textY + lineSpacing
+        );
+
+        g.drawString(
+            "Speed: " + plane.getPlaneSpeed(),
+            textX,
+            textY + lineSpacing * 2
+        );
+
+        g.drawString(
+            "Status: " + plane.getStatus(),
+            textX,
+            textY + lineSpacing * 3
+        );
+
+        g.drawString(
+            "Current target: "
+                + plane.getCurrentTargetName(),
+            textX,
+            textY + lineSpacing * 4
+        );
+
+        g.drawString(
+            "Final destination: "
+                + plane.getFinalDestinationName(),
+            textX,
+            textY + lineSpacing * 5
+        );
+    }
+
+    private void drawFlightBoard(Graphics2D g) {
+        int boardWidth = 330;
+        int rowHeight = 20;
+
+        int numberOfPlanes = airport.getPlanes().size();
+
+        int boardHeight = Math.max(
+            80,
+            55 + numberOfPlanes * rowHeight
+        );
+
+        // Fixed at top-right corner
+        int boardX = getWidth() - boardWidth - 15;
+        int boardY = 15;
+
+        // Dark transparent background
+        g.setColor(new Color(10, 15, 20, 220));
+        g.fillRect(
+            boardX,
+            boardY,
+            boardWidth,
+            boardHeight
+        );
+
+        // Green outline
+        g.setColor(Color.GREEN);
+        g.drawRect(
+            boardX,
+            boardY,
+            boardWidth,
+            boardHeight
+        );
+
+        g.setFont(new Font(
+            Font.MONOSPACED,
+            Font.BOLD,
+            13
+        ));
+
+        // Board title
+        g.setColor(Color.WHITE);
+        g.drawString(
+            "FLIGHT BOARD",
+            boardX + 10,
+            boardY + 18
+        );
+
+        // Column locations
+        int flightX = boardX + 10;
+        int typeX = boardX + 80;
+        int statusX = boardX + 155;
+        int gateX = boardX + 250;
+
+        // Column headings
+        g.setColor(Color.YELLOW);
+
+        g.drawString("FLIGHT", flightX, boardY + 38);
+        g.drawString("TYPE", typeX, boardY + 38);
+        g.drawString("STATUS", statusX, boardY + 38);
+        g.drawString("GATE", gateX, boardY + 38);
+
+        int rowY = boardY + 58;
+
+        for (Plane plane : airport.getPlanes()) {
+            String planeType;
+
+            if (plane instanceof CargoPlane) {
+                planeType = "CARGO";
+            } else if (plane instanceof CommercialPlane) {
+                planeType = "PAX";
+            } else {
+                planeType = "PLANE";
+            }
+
+            String location = plane.getCurrentNodeName();
+
+            String gate = "-";
+
+            if (location.startsWith("Gate")) {
+                gate = location;
+            }
+
+            g.setColor(Color.GREEN);
+
+            g.drawString(
+                plane.getPlaneID(),
+                flightX,
+                rowY
+            );
+
+            g.drawString(
+                planeType,
+                typeX,
+                rowY
+            );
+
+            g.drawString(
+                plane.getStatus(),
+                statusX,
+                rowY
+            );
+
+            g.drawString(
+                gate,
+                gateX,
+                rowY
+            );
+
+            rowY += rowHeight;
         }
     }
 
