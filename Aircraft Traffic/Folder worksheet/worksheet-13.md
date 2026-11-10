@@ -195,8 +195,16 @@ List<Plane> boardPlanes = airport.getPlanes()
 
 - What was the most important concept you learned?
 
+- The most important concept I learned this semester was version control. Although I used GitHub for this airport simulation, the knowledge was also useful in my other courses. For example, I accidentally deleted all the prefabs from my Unity game project. But thanks to committing and version history, I was able to restore the deleted files instead of rebuilding everything. This showed me that version control is not only used for collaboration but is also an important safety net during development.
+
 - What design trade-off did you face, and how did you resolve it?
+
+- One design trade-off I faced was balancing realistic airport behaviour with a manageable level of complexity. I wanted multiple planes to move freely without colliding, but a completely realistic traffic-control system would have been too complex for the project timeframe. I resolved this by using connected nodes, route finding, and a rule allowing only one plane on the runway at a time.
 
 - If you started over, what would you do differently?
 
+- If I started again, I would design the node network and movement system before creating the visual interface. I initially created fixed routes, but later replaced them with connected nodes and BFS route finding. Planning this earlier would have reduced repeated changes and safe me a lot of time. 
+
 - What feedback from the Week 7 submission did you act on?
+
+- In response to the Week 7 feedback, my team reorganised our classes and project folders. This made the code easier to navigate and helped us keep related classes together as the project became larger.
