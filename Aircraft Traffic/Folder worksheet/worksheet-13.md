@@ -91,7 +91,6 @@ STREAMS API
                 )
         )
 
-
 **2.2.** For the most sophisticated use, paste the code and explain: what does it do, and why was a stream/lambda better than a loop?
 
 LAMBDA:
