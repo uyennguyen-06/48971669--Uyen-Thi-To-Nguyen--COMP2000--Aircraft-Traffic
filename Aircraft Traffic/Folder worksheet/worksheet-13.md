@@ -16,20 +16,35 @@ Don't forget to submit a pdf file which shows a diagram of your pattern implemen
 
 **1.1.** Which design pattern(s) did you implement? Name them and state where each appears in your codebase.
 
-
-
+- I used the Observer/Event Listener pattern, which is a behavioural design pattern. It appears in AirportJPanel, where a Swing Timer produces events at regular intervals. A lambda expression listens for these events, updates every plane’s movement, and repaints the panel. This separates the event source from the code that responds to it.
 
 
 **1.2.** For each pattern, paste a code snippet showing the key interaction between participants.
 
+- For example, in AirportJPanel: 
 
+        Timer timer = new Timer(30, event -> {
+                for (Plane plane : airport.getPlanes()) {
+                    plane.updateMovement(
+                        airport.getRunway(),
+                        airport.getRunwayEntrance(),
+                        airport.getRunwayExit()
+                    );
+                }
+                airport.getPlanes().removeIf(plane -> plane.isFinished());
+                repaint();
+            });
 
+- The Swing Timer is the event source, while the lambda expression acts as the listener. Every 30 milliseconds, the timer sends an event to the listener and the listener reponds by updating the movement of every plane and calling repaint() to refreshing the visual display. 
 
 
 **1.3.** For each pattern, explain why you chose it over an alternative. What trade-off did you make?
 
+- I choose this pattern because the simulation needed to update plane movement and redraw the interface repeatedly. Using Swing Timer allowed AirportJPanel to respond automatically to an event every 30 milliseconds.
 
+- An alternative would have been a manual loop but these approaches would require additional timing and could interface with Swing's interface thread. The trade-off is that the simulation updates at a fixed interval and runs its update code on Swing's Event Dispatch Thread. 
 
+- This keeps the implementation simple and safe for the interface, but complex calculations could cause the display to become unresponsive. For the small number of planes in this simulation, the simplicity was more valuable than using more complicated multithreading.
 
 
 ---
