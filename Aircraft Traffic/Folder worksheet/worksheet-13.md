@@ -201,9 +201,7 @@ List<Plane> boardPlanes = airport.getPlanes()
 
 **4.1.** Attach or link your log book entries for Weeks 7–13.
 
-
-
-
+[View my logbook](COMP2000-48971669-LogBook.pdf) 
 
 **4.2.** Reflect on the semester:
 
