@@ -14,6 +14,8 @@ My individual project: https://github.com/uyennguyen-06/48971669--Uyen-Thi-To-Ng
 
 Don't forget to submit a pdf file which shows a diagram of your pattern implemenation to supplement this text description.
 
+![Design Pattern](DesignPattern.png)
+
 **1.1.** Which design pattern(s) did you implement? Name them and state where each appears in your codebase.
 
 - I used the Observer/Event Listener pattern, which is a behavioural design pattern. It appears in AirportJPanel, where a Swing Timer produces events at regular intervals. A lambda expression listens for these events, updates every plane’s movement, and repaints the panel. This separates the event source from the code that responds to it.
